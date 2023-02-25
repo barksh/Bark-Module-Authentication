@@ -1,4 +1,11 @@
+/**
+ * @author WMXPY
+ * @namespace Handlers
+ * @description Create Account
+ */
+
 export const createAccountHandler = async (event: any): Promise<any> => {
+
     return {
         statusCode: 200,
         body: JSON.stringify(
