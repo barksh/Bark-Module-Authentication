@@ -53,3 +53,27 @@ export const dnsLookupText = async (domain: string): Promise<string> => {
         });
     });
 };
+
+export const dnsLookupCName = async (domain: string): Promise<string> => {
+
+    return new Promise((
+        resolve: (value: string) => void,
+        reject: (reason: Error) => void,
+    ) => {
+
+        DNS.resolveCname(domain, (error: Error | null, addresses: string[] | undefined) => {
+
+            if (error) {
+                reject(error);
+                return;
+            }
+
+            if (Array.isArray(addresses)) {
+                resolve(addresses[0]);
+                return;
+            }
+
+            reject(new Error('Invalid Address'));
+        });
+    });
+};

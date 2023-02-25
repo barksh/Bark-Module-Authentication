@@ -2,7 +2,9 @@
     "name": "@barksh-module/authentication",
     "private": true,
     "version": "1.0.0",
-    "dependencies": {},
+    "dependencies": {
+        "connor": "^2.7.0"
+    },
     "devDependencies": {
         "@sudoo/triforce": "^3.10.1",
         "serverless": "^3.27.0",
