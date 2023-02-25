@@ -1,6 +1,6 @@
-POST http://localhost:4000/account/create
+POST {{$dotenv HOST}}/account/create
 Accept: application/json
-Authorization: Bearer 
+Authorization: Bearer {{$dotenv AUTH_TOKEN}}
 
 {
 }

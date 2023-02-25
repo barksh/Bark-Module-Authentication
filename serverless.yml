@@ -1,10 +1,11 @@
+useDotenv: true
 service: barksh-module-authentication
 frameworkVersion: "3"
 
 provider:
   name: aws
   stage: prod
-  iamRoleStatements: ${file(config/iam-role-statements.json)}
+  iamRoleStatements: ${file(./config/iam-role-statements.yml)}
   region: us-east-1
   runtime: nodejs18.x
   memorySize: 256
