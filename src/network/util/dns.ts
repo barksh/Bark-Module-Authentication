@@ -5,6 +5,8 @@
  */
 
 import * as DNS from "node:dns";
+import { ERROR_CODE } from "../../error/code";
+import { panic } from "../../error/panic";
 
 export const dnsLookupIp = async (domain: string): Promise<string> => {
 
@@ -13,7 +15,10 @@ export const dnsLookupIp = async (domain: string): Promise<string> => {
         reject: (reason: Error) => void,
     ) => {
 
-        DNS.lookup(domain, (error: Error | null, address: string | undefined) => {
+        DNS.lookup(domain, (
+            error: Error | null,
+            address: string | undefined,
+        ) => {
 
             if (error) {
                 reject(error);
@@ -25,7 +30,7 @@ export const dnsLookupIp = async (domain: string): Promise<string> => {
                 return;
             }
 
-            reject(new Error('Invalid Address'));
+            reject(panic.code(ERROR_CODE.INVALID_DOMAIN_1, domain));
         });
     });
 };
@@ -37,7 +42,10 @@ export const dnsLookupText = async (domain: string): Promise<string> => {
         reject: (reason: Error) => void,
     ) => {
 
-        DNS.resolveTxt(domain, (error: Error | null, addresses: string[][] | undefined) => {
+        DNS.resolveTxt(domain, (
+            error: Error | null,
+            addresses: string[][] | undefined,
+        ) => {
 
             if (error) {
                 reject(error);
@@ -49,7 +57,8 @@ export const dnsLookupText = async (domain: string): Promise<string> => {
                 return;
             }
 
-            reject(new Error('Invalid Address'));
+            reject(panic.code(ERROR_CODE.INVALID_DOMAIN_1, domain));
+
         });
     });
 };
@@ -61,7 +70,10 @@ export const dnsLookupCName = async (domain: string): Promise<string> => {
         reject: (reason: Error) => void,
     ) => {
 
-        DNS.resolveCname(domain, (error: Error | null, addresses: string[] | undefined) => {
+        DNS.resolveCname(domain, (
+            error: Error | null,
+            addresses: string[] | undefined,
+        ) => {
 
             if (error) {
                 reject(error);
@@ -73,7 +85,7 @@ export const dnsLookupCName = async (domain: string): Promise<string> => {
                 return;
             }
 
-            reject(new Error('Invalid Address'));
+            reject(panic.code(ERROR_CODE.INVALID_DOMAIN_1, domain));
         });
     });
 };
