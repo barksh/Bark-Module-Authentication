@@ -4,18 +4,15 @@ frameworkVersion: "3"
 provider:
   name: aws
   stage: prod
-  iamRoleStatements:
-    - Effect: "Allow"
-      Action:
-        - dynamodb:*
-      Resource:
-        - "*"
+  iamRoleStatements: ${file(config/iam-role-statements.json)}
   region: us-east-1
   runtime: nodejs18.x
-  memorySize: 512
+  memorySize: 256
   timeout: 10
   apiGateway:
     minimumCompressionSize: 1024
+  environment:
+    ROOT_DYNAMO_DB_ARN: ${env:ROOT_DYNAMO_DB_ARN}
 
 plugins:
   - serverless-offline
@@ -31,8 +28,6 @@ custom:
 functions:
   CreateAccount:
     handler: src/handlers/account/create.createAccountHandler
-    environment:
-      APIG_DEPLOYMENT_ID: TestTest
     events:
       - httpApi:
           path: /account/create
