@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
- * @namespace Handlers
- * @description Create Account
+ * @namespace Handlers_Account
+ * @description Create
  */
 
 export const createAccountHandler = async (event: any): Promise<any> => {

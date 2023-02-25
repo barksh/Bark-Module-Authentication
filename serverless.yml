@@ -24,7 +24,7 @@ custom:
 
 functions:
   CreateAccount:
-    handler: src/handlers/create-account.createAccountHandler
+    handler: src/handlers/account/create.createAccountHandler
     events:
       - httpApi:
           path: /account/create
