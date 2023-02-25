@@ -4,17 +4,17 @@ frameworkVersion: "3"
 provider:
   name: aws
   stage: prod
+  iamRoleStatements:
+    - name: authentication-execution-role
+      Effect: "Allow"
+      Action:
+        - dynamodb:*
+      Resource:
+        - "*"
   region: us-east-1
   runtime: nodejs18.x
   memorySize: 512
   timeout: 10
-  iam:
-    role:
-      name: authentication-execution-role
-      Effect: "Allow"
-      Action:
-        - dynamodb:*
-      Resource: "*"
   apiGateway:
     minimumCompressionSize: 1024
 
