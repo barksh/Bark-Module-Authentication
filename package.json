@@ -12,12 +12,10 @@
     },
     "nyc": {
         "extension": [
-            ".ts",
-            ".tsx"
+            ".ts"
         ],
         "include": [
-            "src/**/*.ts",
-            "src/**/*.tsx"
+            "src/**/*.ts"
         ],
         "instrument": true,
         "reporter": [
