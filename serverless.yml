@@ -5,8 +5,7 @@ provider:
   name: aws
   stage: prod
   iamRoleStatements:
-    - name: authentication-execution-role
-      Effect: "Allow"
+    - Effect: "Allow"
       Action:
         - dynamodb:*
       Resource:
@@ -32,6 +31,8 @@ custom:
 functions:
   CreateAccount:
     handler: src/handlers/account/create.createAccountHandler
+    environment:
+      APIG_DEPLOYMENT_ID: TestTest
     events:
       - httpApi:
           path: /account/create
