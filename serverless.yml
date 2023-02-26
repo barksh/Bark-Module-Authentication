@@ -1,19 +1,7 @@
-useDotenv: true
 service: barksh-module-authentication
 frameworkVersion: "3"
 
-provider:
-  name: aws
-  stage: prod
-  iamRoleStatements: ${file(./config/iam-role-statements.yml)}
-  region: us-east-1
-  runtime: nodejs18.x
-  memorySize: 256
-  timeout: 10
-  apiGateway:
-    minimumCompressionSize: 1024
-  environment:
-    ROOT_DYNAMO_DB_ARN: ${env:ROOT_DYNAMO_DB_ARN}
+provider: ${file(./config/provider-aws.yml)}
 
 plugins:
   - serverless-offline
