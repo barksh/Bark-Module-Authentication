@@ -28,8 +28,8 @@ custom:
 
 functions:
   CreateAccount:
-    handler: src/handlers/account/create.createAccountHandler
+    handler: src/handlers/v1/account/create.createAccountHandler
     events:
       - httpApi:
-          path: /account/create
+          path: /v1/account/create
           method: post

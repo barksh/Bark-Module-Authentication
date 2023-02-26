@@ -1,4 +1,4 @@
-POST {{$dotenv HOST}}/account/create
+POST {{$dotenv HOST}}/v1/account/create
 Accept: application/json
 Authorization: Bearer {{$dotenv AUTH_TOKEN}}
 
