@@ -4,7 +4,11 @@
  * @description Create
  */
 
+import { Initializer } from "../../../initialize/initializer";
+
 export const createAccountHandler = async (event: any): Promise<any> => {
+
+    const initializer: Initializer = await Initializer.getInstance();
 
     return {
         statusCode: 200,

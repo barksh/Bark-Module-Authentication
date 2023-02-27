@@ -33,3 +33,6 @@ coverage
 
 # Serverless
 .serverless
+
+# Testing
+commands.txt
