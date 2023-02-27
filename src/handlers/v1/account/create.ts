@@ -8,7 +8,7 @@ import { Initializer } from "../../../initialize/initializer";
 
 export const createAccountHandler = async (event: any): Promise<any> => {
 
-    const initializer: Initializer = await Initializer.getInstance();
+    await Initializer.initialize();
 
     return {
         statusCode: 200,
