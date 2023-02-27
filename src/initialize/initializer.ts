@@ -4,8 +4,11 @@
  * @description Initializer
  */
 
-import { connectDatabase } from "../database/connect";
 import * as Mongoose from "mongoose";
+import { connectDatabase } from "../database/connect";
+import { ERROR_CODE } from "../error/code";
+import { panic } from "../error/panic";
+import { AUTHENTICATION_MONGO_DB, SECRET_KEY } from "./environment";
 
 export class Initializer {
 
@@ -44,11 +47,17 @@ export class Initializer {
     public getSecretKey(): string {
 
         if (!this._initialized) {
-            throw new Error("[Sudoo-Authentication] Initializer not initialized");
+
+            throw panic.code(
+                ERROR_CODE.APPLICATION_NOT_INITIALIZED,
+            );
         }
 
         if (!this._secretKey) {
-            throw new Error("[Sudoo-Authentication] Secret Key not found");
+            throw panic.code(
+                ERROR_CODE.APPLICATION_INITIALIZED_WITH_INFO_MISSING_1,
+                'SECRET_KEY',
+            );
         }
         return this._secretKey;
     }
@@ -69,14 +78,19 @@ export class Initializer {
         }
         this._initialized = true;
 
-        const AUTHENTICATION_MONGO_DB: string | undefined = process.env.AUTHENTICATION_MONGO_DB;
-        const SECRET_KEY: string | undefined = process.env.SECRET_KEY;
-
         if (!AUTHENTICATION_MONGO_DB) {
-            throw new Error("[Sudoo-Authentication] Authentication Mongo DB not found");
+
+            throw panic.code(
+                ERROR_CODE.ENVIRONMENT_VARIABLE_REQUIRED_BUT_NOT_FOUND_1,
+                'AUTHENTICATION_MONGO_DB',
+            );
         }
         if (!SECRET_KEY) {
-            throw new Error("[Sudoo-Authentication] Secret Key not found");
+
+            throw panic.code(
+                ERROR_CODE.ENVIRONMENT_VARIABLE_REQUIRED_BUT_NOT_FOUND_1,
+                'SECRET_KEY',
+            );
         }
 
         try {
@@ -87,7 +101,7 @@ export class Initializer {
             this._secretKey = SECRET_KEY;
         } catch (err) {
 
-            console.log("[Sudoo-Authentication] Error", err);
+            console.error("[Authentication Module] Error during initialization:", err);
             throw err;
         }
     }
