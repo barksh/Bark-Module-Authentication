@@ -1,7 +1,18 @@
 service: barksh-module-authentication
 frameworkVersion: "3"
 
-provider: ${file(./config/provider-aws.yml)}
+provider:
+  name: aws
+  stage: prod
+  region: us-east-1
+  runtime: nodejs18.x
+  memorySize: 256
+  timeout: 10
+  apiGateway:
+    minimumCompressionSize: 1024
+  environment:
+    AUTHENTICATION_MONGO_DB: ${env:AUTHENTICATION_MONGO_DB}
+    SECRET_KEY: ${env:SECRET_KEY}
 
 plugins:
   - serverless-offline
