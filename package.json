@@ -5,6 +5,7 @@
     "dependencies": {
         "@sudoo/password": "^1.2.0",
         "@sudoo/random": "^2.2.0",
+        "@sudoo/token": "^1.6.1",
         "@sudoo/triforce-mongoose": "^1.6.0",
         "connor": "^2.7.0",
         "speakeasy": "^2.0.0"

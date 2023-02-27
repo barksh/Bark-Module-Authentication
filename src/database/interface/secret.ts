@@ -8,7 +8,7 @@ export interface ISecretConfig {
 
     readonly domain: string;
 
-    readonly publishKey: string;
+    readonly publicKey: string;
 
     readonly encryptedPrivateKey: string;
     readonly initVector: string;

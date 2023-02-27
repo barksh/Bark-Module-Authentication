@@ -1536,6 +1536,11 @@
   resolved "https://registry.yarnpkg.com/@sudoo/random/-/random-2.2.0.tgz#2dcac50d29ccfaef761967991a7f4402d00f06ed"
   integrity sha512-H4ZEr8OQ7utqQFSy8RyUjdUCSQatmKG0r+h2+FrLFrjXH7VJYqhSj+txM7do8trybj7638CnLhO58jwdl6WxCg==
 
+"@sudoo/token@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@sudoo/token/-/token-1.6.1.tgz#f05004a3f31fa8787c7780c066fd90f8513cddc5"
+  integrity sha512-sI2L8yJbzRyMw12RMyBFNfee9lKDLAsp2/KLYRlGWjRHWdJMq4nTYiZrLaTUyRsMCRJWtfGQMU4yCeU9xPQTFw==
+
 "@sudoo/triforce-mongoose-dev@^1.6.0":
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@sudoo/triforce-mongoose-dev/-/triforce-mongoose-dev-1.6.0.tgz#87821e6393777b02eb2deff2372751a6b67c882e"
