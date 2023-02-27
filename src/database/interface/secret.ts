@@ -14,6 +14,11 @@ export interface ISecretConfig {
     readonly initVector: string;
 }
 
+export interface IDecryptedSecretConfig extends ISecretConfig {
+
+    readonly privateKey: string;
+}
+
 export interface ISecret extends ISecretConfig {
 
     readonly createdAt: Date;
