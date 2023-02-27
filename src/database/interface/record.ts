@@ -10,7 +10,7 @@ export interface IRecordConfig<T extends RecordType> {
 
     readonly type: T;
     readonly subType: RecordSubType<T>;
-    readonly data: any;
+    readonly payload: any;
 }
 
 export interface IRecord<T extends RecordType> extends IRecordConfig<T> {

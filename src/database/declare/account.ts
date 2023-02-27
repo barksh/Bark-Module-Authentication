@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Database_Interface
+ * @namespace Database_Declare
  * @description Declare
  */
 

@@ -4,7 +4,6 @@
  * @description Record
  */
 
-
 export enum RecordType {
 
     UPDATE_PASSWORD = "UPDATE_PASSWORD",
