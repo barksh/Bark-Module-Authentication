@@ -15,7 +15,13 @@ custom:
     httpPort: 4000
 
 functions:
-  CreateAccount:
+  SecretPublicKeyPost:
+    handler: src/handlers/v1/secret/post-public-key-fetch.secretPostPublicKeyFetchHandler
+    events:
+      - httpApi:
+          path: /v1/secret/public-key/fetch
+          method: post
+  AccountCreatePost:
     handler: src/handlers/v1/account/create.createAccountHandler
     events:
       - httpApi:

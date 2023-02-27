@@ -1511,6 +1511,25 @@
   resolved "https://registry.yarnpkg.com/@sudoo/eslint-config/-/eslint-config-1.9.0.tgz#b42d65c1458052680b185c4b31dec42ec26cfbab"
   integrity sha512-TgGdJQB93go9pknnDv5klolsa1bvJwiXVur+S5oL6TY0xg3C4QQeqeNHhOZ2qD4bkZ2upwr2N/LraUfxRJz8hg==
 
+"@sudoo/lambda-verify@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/lambda-verify/-/lambda-verify-1.5.0.tgz#2000638bf5a99ff8a992d1b261eaef74f78bbac2"
+  integrity sha512-NYLXNSQ8YRjYAnNccPyms2C7TLFnsTOz0lhxbsiXYMwuATJacnDpCXNywEpCGmeSU6Hwb85xYdSacMW/EgsccA==
+  dependencies:
+    "@sudoo/magic" "^1.9.0"
+
+"@sudoo/lambda@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/lambda/-/lambda-2.0.0.tgz#751ca2e40e968e7db104494a9f44180d3d803a56"
+  integrity sha512-gS4bb7TR4OwTf6OssCAKddnFX7AwOWuMsJlVvYMLj1zvGBvG/x8n7rBsB+c1vlTmoUxJpET6ZBXBAMN1xKvMMQ==
+  dependencies:
+    "@sudoo/magic" "^1.8.0"
+
+"@sudoo/magic@^1.8.0", "@sudoo/magic@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/magic/-/magic-1.9.0.tgz#8ba9485604d85c6f88dd891d393e3bb4bc508355"
+  integrity sha512-3z6oK1cEh0uXIyQXgiReQB7IdORIfY638MsiwKyUjXPZeetHiLdLQpNEiCbAxTDPb7kaQvRT7xHlMFI7/LwA+g==
+
 "@sudoo/mocha-config-react-native@3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@sudoo/mocha-config-react-native/-/mocha-config-react-native-3.1.0.tgz#b31ac98c7d02fcc3545dc4aa58a2bd3caa5b2fee"
@@ -1530,6 +1549,11 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@sudoo/password/-/password-1.2.0.tgz#68eec6ed1cba11aee724a1c0aca332b78244013d"
   integrity sha512-pZqpB746lfRmRxj8EGxcgNpI4T+ugKg0t9xK5v0F+0QpT6HK60ZoAYQKVGZqA0CZuOVBYj4TZgJ1+nzbXXfy/A==
+
+"@sudoo/pattern@^1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/pattern/-/pattern-1.10.0.tgz#50df7e10a1dc5b8f259461eba32e7ff13243b070"
+  integrity sha512-XTkI4j3F6OmJo5LQcOsSjIowmdbETm2H0GikM683rt46I4Lau6t6T7iicwqwmEY6Wr/4xNqqhIZJ2QL+92XgBg==
 
 "@sudoo/random@^2.2.0":
   version "2.2.0"
@@ -1589,6 +1613,11 @@
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@sudoo/tsconfig/-/tsconfig-1.6.0.tgz#4c03395d7ddb10f3666d9437820f1d92c6f06895"
   integrity sha512-o9mL3Bxt5C3PXa5mR+E4aejg+2OK+nU9sekFRPB7MFk5NNX1tgsK8DGD00OOHxDt7pFdO3EkOdBLzdNZbjSzoQ==
+
+"@sudoo/verify@^1.19.0":
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/verify/-/verify-1.19.0.tgz#37c01d8d0d5254e6dc4313e6af936ffaa64d2b1f"
+  integrity sha512-2ngxMpoXgatRm9hXRtnnEZZdmkd99xMp43bmHe3TDBYR6gNsoMtw4lZ1Y0gZwX4AnR2DvPBw/bFlFNvZ2B0HSA==
 
 "@szmarczak/http-timer@^4.0.5":
   version "4.0.6"
@@ -2094,7 +2123,17 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-sdk@^2.1303.0:
+aws-lambda@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/aws-lambda/-/aws-lambda-1.0.7.tgz#c6b674df47458b5ecd43ab734899ad2e2d457013"
+  integrity sha512-9GNFMRrEMG5y3Jvv+V4azWvc+qNWdWLTjDdhf/zgMlz8haaaLWv0xeAIWxz9PuWUBawsVxy0zZotjCdR3Xq+2w==
+  dependencies:
+    aws-sdk "^2.814.0"
+    commander "^3.0.2"
+    js-yaml "^3.14.1"
+    watchpack "^2.0.0-beta.10"
+
+aws-sdk@^2.1303.0, aws-sdk@^2.814.0:
   version "2.1323.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1323.0.tgz#ee27583ae502ce37fa644657f3d90a02ce468f2c"
   integrity sha512-GoLwk2SuG9A6eWgc1mGmm548dklheDmkeptHRw2RhCvq2GZqlc4AzStFUjUURy4O4NQmd2ZiQIoeseue4RwurA==
@@ -2565,6 +2604,11 @@ commander@^2.8.1:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
+
+commander@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-3.0.2.tgz#6837c3fb677ad9933d1cfba42dd14d5117d6b39e"
+  integrity sha512-Gar0ASD4BDyKC4hl4DwHqDrmvjoxWKZigVnAbn5H1owvm4CxCPdb0HQDehwNYMJpla5+M2tPmPARzhtYuwpHow==
 
 commander@~4.1.1:
   version "4.1.1"
@@ -3699,6 +3743,11 @@ glob-parent@^6.0.2:
   integrity sha512-XxwI8EOhVQgWp6iDL+3b0r86f4d6AX6zSU55HfB4ydCEuXLXc5FcYeOu+nnGftS4TEju/11rt4KJPTMgbfmv4A==
   dependencies:
     is-glob "^4.0.3"
+
+glob-to-regexp@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/glob-to-regexp/-/glob-to-regexp-0.4.1.tgz#c75297087c851b9a578bd217dd59a92f59fe546e"
+  integrity sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==
 
 glob@7.2.0:
   version "7.2.0"
@@ -6465,6 +6514,14 @@ velocityjs@^2.0.6:
   integrity sha512-QMYLeYLBX6eqekCin3OPmDAHapaUx3foNFE264ml1/yxRZ8TUUlI1+u6rtN4E8tKNqwzpRPeNgJtjLbgRNK4fw==
   dependencies:
     debug "^4.3.3"
+
+watchpack@^2.0.0-beta.10:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-2.4.0.tgz#fa33032374962c78113f93c7f2fb4c54c9862a5d"
+  integrity sha512-Lcvm7MGST/4fup+ifyKi2hjyIAwcdI4HRgtvTpIUxBRhB+RFtUh8XtDOxUfctVCnhVi+QQj49i91OyvzkJl6cg==
+  dependencies:
+    glob-to-regexp "^0.4.1"
+    graceful-fs "^4.1.2"
 
 wcwidth@^1.0.1:
   version "1.0.1"
