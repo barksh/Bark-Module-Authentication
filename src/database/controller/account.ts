@@ -24,7 +24,6 @@ export const createUnsavedAccount = (
 
         identifier,
         password: saltedPassword,
-        previousPasswords: [],
         mint,
         salt,
     };

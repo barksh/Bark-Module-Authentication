@@ -4,26 +4,11 @@
  * @description Account
  */
 
-export enum PreviousPasswordReason {
-
-    CHANGE = "CHANGE",
-    RESET = "RESET",
-    TEMP = "TEMP",
-}
-
-export type PreviousPassword = {
-
-    readonly password: string;
-    readonly reason: PreviousPasswordReason;
-    readonly changedAt: Date;
-};
-
 export interface IAccountConfig {
 
     readonly identifier: string;
 
     password: string;
-    previousPasswords: PreviousPassword[];
     mint: string;
     salt: string;
 }

@@ -9,23 +9,7 @@ import { randomUnique } from "@sudoo/random";
 import { Document, model, Model, Schema } from "mongoose";
 import { generateTwoFactorKey, generateTwoFactorURL, verifyTwoFactorCode } from "../../util/two-factor";
 import { defaultInitialAttemptPoints } from "../declare/account";
-import { IAccount, PreviousPassword, PreviousPasswordReason } from "../interface/account";
-
-const PreviousPasswordSchema: Schema = new Schema({
-
-    password: {
-        type: String,
-        required: true,
-    },
-    reason: {
-        type: String,
-        required: true,
-    },
-    changedAt: {
-        type: Date,
-        required: true,
-    },
-}, { _id: false });
+import { IAccount } from "../interface/account";
 
 const AccountSchema: Schema<IAccountModel> = new Schema(
     {
@@ -56,11 +40,6 @@ const AccountSchema: Schema<IAccountModel> = new Schema(
             type: String,
             required: true,
         },
-        previousPasswords: {
-            type: [PreviousPasswordSchema],
-            required: true,
-            default: [],
-        },
 
         mint: {
             type: String,
@@ -86,11 +65,9 @@ export interface IAccountModel extends IAccount, Document {
     addAttemptPoint(point: number): IAccountModel;
     generateAndSetTwoFA(systemName?: string): string;
     verifyTwoFA(code: string): boolean;
-    setPassword(password: string, reason: PreviousPasswordReason): IAccountModel;
-    addPreviousPassword(password: string, reason: PreviousPasswordReason): IAccountModel;
+    setPassword(password: string): IAccountModel;
     resetMint(): IAccountModel;
     verifyPassword(password: string): boolean;
-    verifyPreviousPassword(password: string): PreviousPassword | null;
 }
 
 AccountSchema.methods.useAttemptPoint = function (this: IAccountModel, point: number): IAccountModel {
@@ -135,31 +112,14 @@ AccountSchema.methods.verifyTwoFA = function (this: IAccountModel, code: string)
     return verifyTwoFactorCode(key, code);
 };
 
-AccountSchema.methods.setPassword = function (this: IAccountModel, password: string, reason: PreviousPasswordReason): IAccountModel {
+AccountSchema.methods.setPassword = function (this: IAccountModel, password: string): IAccountModel {
 
     const saltilizer: Saltilizer = Saltilizer.create(this.salt);
 
-    const oldPassword: string = this.password;
     const saltedPassword: string = saltilizer.encrypt(password);
 
     this.password = saltedPassword;
-    this.addPreviousPassword(oldPassword, reason);
-
     this.resetMint();
-
-    return this;
-};
-
-AccountSchema.methods.addPreviousPassword = function (this: IAccountModel, password: string, reason: PreviousPasswordReason): IAccountModel {
-
-    this.previousPasswords = [
-        ...this.previousPasswords,
-        {
-            password,
-            reason,
-            changedAt: new Date(),
-        },
-    ];
 
     return this;
 };
@@ -177,20 +137,6 @@ AccountSchema.methods.verifyPassword = function (this: IAccountModel, password: 
     const saltedPassword: string = saltilizer.encrypt(password);
 
     return this.password === saltedPassword;
-};
-
-AccountSchema.methods.verifyPreviousPassword = function (this: IAccountModel, password: string): PreviousPassword | null {
-
-    const saltilizer: Saltilizer = Saltilizer.create(this.salt);
-    const saltedPassword: string = saltilizer.encrypt(password);
-
-    for (const previousPassword of this.previousPasswords) {
-        if (previousPassword.password === saltedPassword) {
-            return previousPassword;
-        }
-    }
-
-    return null;
 };
 
 export const AccountModel: Model<IAccountModel> = model<IAccountModel>('Account', AccountSchema);

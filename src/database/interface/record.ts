@@ -4,29 +4,16 @@
  * @description Record
  */
 
-export enum RecordType {
+import { RecordSubType, RecordType } from "../declare/record";
 
-    CHANGE_PASSWORD = "CHANGE_PASSWORD",
+export interface IRecordConfig<T extends RecordType> {
+
+    readonly type: T;
+    readonly subType: RecordSubType<T>;
+    readonly data: any;
 }
 
-export enum 
-
-export interface IAccountConfig {
-
-    readonly identifier: string;
-
-    password: string;
-    previousPasswords: PreviousPassword[];
-    mint: string;
-    salt: string;
-}
-
-export interface IAccount extends IAccountConfig {
-
-    active: boolean;
-    attemptPoints: number;
-    limbo: boolean;
-    twoFactor?: string;
+export interface IRecord<T extends RecordType> extends IRecordConfig<T> {
 
     readonly createdAt: Date;
     readonly updatedAt: Date;
