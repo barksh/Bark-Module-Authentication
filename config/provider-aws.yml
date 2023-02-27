@@ -7,4 +7,4 @@ timeout: 10
 apiGateway:
   minimumCompressionSize: 1024
 environment:
-  ROOT_MONGO_DB: ${env:ROOT_MONGO_DB}
+  AUTHENTICATION_MONGO_DB: ${env:AUTHENTICATION_MONGO_DB}
