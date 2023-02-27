@@ -1,22 +1,15 @@
 /**
  * @author WMXPY
  * @namespace Database_Interface
- * @description Account
+ * @description Record
  */
 
-export enum PreviousPasswordReason {
+export enum RecordType {
 
-    CHANGE = "CHANGE",
-    RESET = "RESET",
-    TEMP = "TEMP",
+    CHANGE_PASSWORD = "CHANGE_PASSWORD",
 }
 
-export type PreviousPassword = {
-
-    readonly password: string;
-    readonly reason: PreviousPasswordReason;
-    readonly changedAt: Date;
-};
+export enum 
 
 export interface IAccountConfig {
 

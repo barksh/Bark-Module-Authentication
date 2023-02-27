@@ -4,11 +4,12 @@
  * @description Account
  */
 
+import { Saltilizer } from "@sudoo/password";
 import { randomUnique } from "@sudoo/random";
 import { Document, model, Model, Schema } from "mongoose";
 import { generateTwoFactorKey, generateTwoFactorURL, verifyTwoFactorCode } from "../../util/two-factor";
-import { defaultInitialAttemptPoints, IAccount, PreviousPassword, PreviousPasswordReason } from "../interface/account";
-import { Saltilizer } from "@sudoo/password";
+import { defaultInitialAttemptPoints } from "../declare/account";
+import { IAccount, PreviousPassword, PreviousPasswordReason } from "../interface/account";
 
 const PreviousPasswordSchema: Schema = new Schema({
 
