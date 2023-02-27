@@ -25,8 +25,16 @@ export class Initializer {
         await instance.initialize();
     }
 
+    public static async terminate(): Promise<void> {
+
+        const instance: Initializer = await this.getInstance();
+        await instance.terminate();
+    }
+
     private _initialized: boolean = false;
     private _secretKey: string | undefined;
+
+    private _connection: Mongoose.Connection | undefined;
 
     private constructor() {
 
@@ -45,11 +53,21 @@ export class Initializer {
         return this._secretKey;
     }
 
+    private async terminate(): Promise<void> {
+
+        if (!this._connection) {
+            return;
+        }
+        this._initialized = false;
+        await this._connection.close();
+    }
+
     private async initialize(): Promise<void> {
 
         if (this._initialized) {
             return;
         }
+        this._initialized = true;
 
         const AUTHENTICATION_MONGO_DB: string | undefined = process.env.AUTHENTICATION_MONGO_DB;
         const SECRET_KEY: string | undefined = process.env.SECRET_KEY;
@@ -61,17 +79,16 @@ export class Initializer {
             throw new Error("[Sudoo-Authentication] Secret Key not found");
         }
 
-        const connection: Mongoose.Connection = await connectDatabase(AUTHENTICATION_MONGO_DB);
+        try {
 
-        return new Promise((resolve: () => void, reject: (reason: any) => void) => {
+            const connection: Mongoose.Connection = await connectDatabase(AUTHENTICATION_MONGO_DB);
 
-            connection.on('error', (error: any) => {
-                reject(error);
-            });
-            connection.once('open', () => {
-                this._secretKey = SECRET_KEY;
-                resolve();
-            });
-        });
+            this._connection = connection;
+            this._secretKey = SECRET_KEY;
+        } catch (err) {
+
+            console.log("[Sudoo-Authentication] Error", err);
+            throw err;
+        }
     }
 }
