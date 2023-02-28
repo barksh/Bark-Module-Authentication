@@ -19,12 +19,18 @@ export const dnsLookupAuthModuleTxt = async (domain: string): Promise<string[]> 
         );
 
     if (txtValue === DNS_TXT_RECORD_NOT_FOUND_SYMBOL) {
-        return [];
+        return [domain];
     }
 
-    return txtValue
+    const domainList: string[] = txtValue
         .split(',')
         .map((each: string) => each.trim());
+
+    if (domainList.includes(domain)) {
+        return domainList;
+    }
+
+    return [domain, ...domainList];
 };
 
 export const dnsLookupTxt = (domain: string): Promise<string | typeof DNS_TXT_RECORD_NOT_FOUND_SYMBOL> => {

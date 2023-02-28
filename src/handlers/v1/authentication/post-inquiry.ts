@@ -14,6 +14,7 @@ import { AccountEmptySymbol, getAccountByIdentifier } from "../../../database/co
 import { IAccountModel } from "../../../database/model/account";
 import { ERROR_CODE } from "../../../error/code";
 import { panic } from "../../../error/panic";
+import { dnsLookupAuthModuleTxt } from "../../../util/network/dns/txt";
 import { createErroredLambdaResponse } from "../../common/response";
 import { wrapHandler } from "../../common/setup";
 
@@ -41,6 +42,14 @@ export const authenticationPostInquiryHandler: APIGatewayProxyHandler = wrapHand
     ): Promise<APIGatewayProxyResult> => {
 
         const body: Body = event.verifiedBody;
+
+        const availableCallbackUrls: string[] = await dnsLookupAuthModuleTxt(body.domain);
+        if (!availableCallbackUrls.includes(body.callbackUrl)) {
+            return createErroredLambdaResponse(
+                HTTP_RESPONSE_CODE.NOT_FOUND,
+                panic.code(ERROR_CODE.INVALID_CALLBACK_URL_1, body.callbackUrl),
+            );
+        }
 
         const account: IAccountModel | typeof AccountEmptySymbol = await getAccountByIdentifier(body.identifier);
 
