@@ -20,7 +20,7 @@ export type GenerateInquiryTokenConfig = {
 
 export type InquiryTokenHeader = {
 
-    readonly purpose: 'inquiry';
+    readonly purpose: 'Inquiry';
 };
 
 export type InquiryTokenBody = {
@@ -54,7 +54,7 @@ export const generateInquiryToken = async (
         issuer: Initializer.getInstance().getSelfDomain(),
         audience: unsavedInquiry.domain,
         header: {
-            purpose: 'inquiry',
+            purpose: 'Inquiry',
         },
         body: {
             identifier: unsavedInquiry.accountIdentifier,

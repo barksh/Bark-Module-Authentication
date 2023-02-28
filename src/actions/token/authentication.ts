@@ -1,73 +1,67 @@
 /**
  * @author WMXPY
  * @namespace Actions_Token
- * @description Refresh
+ * @description Authentication
  */
 
 import { JWTCreator, JWTToken } from "@sudoo/jwt";
 import { UUIDVersion4 } from "@sudoo/uuid";
+import { IInquiry } from "../../database/interface/inquiry";
 import { IDecryptedSecretConfig } from "../../database/interface/secret";
-import { IInquiryModel } from "../../database/model/inquiry";
 import { Initializer } from "../../initialize/initializer";
 import { getOrCreateDecryptedSecretByDomain } from "../secret/get-or-create";
 
-export type GenerateRefreshTokenConfig = {
+export type GenerateAuthenticationTokenConfig = {
 
-    readonly inquiry: IInquiryModel;
+    readonly inquiry: IInquiry;
 };
 
-export type RefreshTokenHeader = {
+export type AuthenticationTokenHeader = {
 
-    readonly purpose: 'Refresh';
+    readonly purpose: 'Authentication';
 };
 
-export type RefreshTokenBody = {
+export type AuthenticationTokenBody = {
 
     readonly identifier: string;
-    readonly inquiry: string;
 };
 
-export type RefreshAuthToken = JWTToken<RefreshTokenHeader, RefreshTokenBody>;
+export type AuthenticationAuthToken = JWTToken<AuthenticationTokenHeader, AuthenticationTokenBody>;
 
-export const generateRefreshToken = async (
-    config: GenerateRefreshTokenConfig,
+export const generateAuthenticationToken = async (
+    config: GenerateAuthenticationTokenConfig,
 ): Promise<string> => {
 
-    const inquiry: IInquiryModel = config.inquiry;
+    const inquiry: IInquiry = config.inquiry;
 
     const secret: IDecryptedSecretConfig | null = await getOrCreateDecryptedSecretByDomain(
         inquiry.domain,
     );
 
-    const creator: JWTCreator<RefreshTokenHeader, RefreshTokenBody> =
+    const creator: JWTCreator<AuthenticationTokenHeader, AuthenticationTokenBody> =
         JWTCreator.instantiate(secret.privateKey);
 
     const issueDate: Date = new Date();
     const expireDate: Date = new Date();
-    expireDate.setUTCMonth(expireDate.getUTCMonth() + 1);
+    expireDate.setUTCDate(expireDate.getUTCDate() + 7);
 
-    const refreshTokenIdentifier: string =
+    const authenticationTokenIdentifier: string =
         UUIDVersion4.generateString().toString();
-
-    inquiry.attachRefreshToken(refreshTokenIdentifier);
 
     const token: string = creator.create({
         issuedAt: issueDate,
         expirationAt: expireDate,
-        identifier: refreshTokenIdentifier,
+        identifier: authenticationTokenIdentifier,
         keyType: 'Bark',
         issuer: Initializer.getInstance().getSelfDomain(),
         audience: inquiry.domain,
         header: {
-            purpose: 'Refresh',
+            purpose: 'Authentication',
         },
         body: {
             identifier: inquiry.accountIdentifier,
-            inquiry: inquiry.inquiryIdentifier,
         },
     });
-
-    await inquiry.save();
 
     return token;
 };
