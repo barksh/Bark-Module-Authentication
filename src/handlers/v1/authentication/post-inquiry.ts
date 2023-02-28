@@ -1,4 +1,3 @@
-
 /**
  * @author WMXPY
  * @namespace Handlers_Authentication

@@ -7,6 +7,8 @@
 import { UUIDVersion4 } from "@sudoo/uuid";
 import { IInquiryModel, InquiryModel } from "../model/inquiry";
 
+export const InquiryEmptySymbol = Symbol('inquiry-empty');
+
 export const createUnsavedInquiry = (
     accountIdentifier: string,
     domain: string,
@@ -27,5 +29,20 @@ export const createUnsavedInquiry = (
         issuedAt: issueDate,
         expireAt: expireDate,
     });
+    return inquiry;
+};
+
+export const getInquiryByIdentifier = async (
+    inquiryIdentifier: string,
+): Promise<IInquiryModel | typeof InquiryEmptySymbol> => {
+
+    const inquiry: IInquiryModel | null = await InquiryModel.findOne({
+        inquiryIdentifier,
+    }).exec();
+
+    if (!inquiry) {
+        return InquiryEmptySymbol;
+    }
+
     return inquiry;
 };

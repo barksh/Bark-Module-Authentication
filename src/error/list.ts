@@ -12,6 +12,8 @@ export const ERROR_LIST: Record<ERROR_CODE, string> = {
     [ERROR_CODE.INVALID_PASSWORD_1]: 'Invalid Password, {}',
     [ERROR_CODE.INVALID_DOMAIN_1]: 'Invalid Domain, {}',
 
+    [ERROR_CODE.INVALID_TOKEN]: 'Invalid Token',
+
     [ERROR_CODE.ACCOUNT_NOT_FOUND_OR_INCORRECT_PASSWORD_1]: 'Account Not Found Or Incorrect Password, {}',
 
     [ERROR_CODE.APPLICATION_NOT_INITIALIZED]: 'Application Not Initialized',

@@ -35,7 +35,7 @@ export const generateRefreshToken = async (
 
     const inquiry: IInquiryModel = config.inquiry;
 
-    const secret: IDecryptedSecretConfig | null = await getOrCreateDecryptedSecretByDomain(
+    const secret: IDecryptedSecretConfig = await getOrCreateDecryptedSecretByDomain(
         inquiry.domain,
     );
 

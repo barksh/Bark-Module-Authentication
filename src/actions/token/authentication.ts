@@ -34,7 +34,7 @@ export const generateAuthenticationToken = async (
 
     const inquiry: IInquiry = config.inquiry;
 
-    const secret: IDecryptedSecretConfig | null = await getOrCreateDecryptedSecretByDomain(
+    const secret: IDecryptedSecretConfig = await getOrCreateDecryptedSecretByDomain(
         inquiry.domain,
     );
 
