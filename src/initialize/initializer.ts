@@ -8,6 +8,7 @@ import * as Mongoose from "mongoose";
 import { connectDatabase } from "../database/connect";
 import { ERROR_CODE } from "../error/code";
 import { panic } from "../error/panic";
+import { logAgent } from "../util/log/log";
 import { AUTHENTICATION_MONGO_DB, AUTHENTICATION_SECRET_KEY, AUTHENTICATION_SELF_DOMAIN } from "./environment";
 
 export class Initializer {
@@ -23,8 +24,6 @@ export class Initializer {
     }
 
     public static async initialize(): Promise<void> {
-
-        console.log("[Authentication Module] 1231231...");
 
         const instance: Initializer = this.getInstance();
         return await instance.initialize();
@@ -96,7 +95,7 @@ export class Initializer {
     private async initialize(): Promise<void> {
 
         if (this._initialized) {
-            console.log("[Authentication Module] Already initialized");
+            logAgent.warning("Already initialized");
         }
         this._initialized = true;
 
@@ -126,11 +125,11 @@ export class Initializer {
 
         try {
 
-            console.log("[Authentication Module] Initializing...");
+            logAgent.info("Initializing");
 
             const connection: Mongoose.Connection = await connectDatabase(AUTHENTICATION_MONGO_DB);
 
-            console.log("[Authentication Module] Initialized");
+            logAgent.info("Initialized");
 
             this._connection = connection;
             this._secretKey = AUTHENTICATION_SECRET_KEY;

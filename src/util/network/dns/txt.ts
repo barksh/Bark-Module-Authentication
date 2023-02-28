@@ -5,6 +5,7 @@
  */
 
 import * as DNS from "node:dns";
+import { logAgent } from "../../log/log";
 
 export const DNS_TXT_RECORD_NOT_FOUND_SYMBOL = Symbol('dns-txt-record-not-found');
 
@@ -47,7 +48,7 @@ export const dnsLookupTxt = (domain: string): Promise<string | typeof DNS_TXT_RE
         ) => {
 
             if (error) {
-                console.log("[BARK] DNS TXT Error:", error);
+                logAgent.error("DNS TXT Error:", error);
                 resolve(DNS_TXT_RECORD_NOT_FOUND_SYMBOL);
                 return;
             }
@@ -57,7 +58,7 @@ export const dnsLookupTxt = (domain: string): Promise<string | typeof DNS_TXT_RE
                 return;
             }
 
-            console.log("[BARK] DNS TXT Internal Error, addresses:", addresses);
+            logAgent.error("DNS TXT Internal Error, addresses:", error);
             resolve(DNS_TXT_RECORD_NOT_FOUND_SYMBOL);
         });
     });

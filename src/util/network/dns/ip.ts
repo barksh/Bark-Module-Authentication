@@ -5,6 +5,7 @@
  */
 
 import * as DNS from "node:dns";
+import { logAgent } from "../../log/log";
 
 export const DNS_IP_RECORD_NOT_FOUND_SYMBOL = Symbol('dns-ip-record-not-found');
 
@@ -22,7 +23,7 @@ export const dnsLookupIp = (domain: string): Promise<string | typeof DNS_IP_RECO
         ) => {
 
             if (error) {
-                console.log("[BARK] DNS IP Error:", error);
+                logAgent.error("DNS IP Error:", error);
                 resolve(DNS_IP_RECORD_NOT_FOUND_SYMBOL);
                 return;
             }
@@ -32,7 +33,7 @@ export const dnsLookupIp = (domain: string): Promise<string | typeof DNS_IP_RECO
                 return;
             }
 
-            console.log("[BARK] DNS IP Internal Error, address:", address);
+            logAgent.error("DNS IP Internal Error, addresses:", error);
             resolve(DNS_IP_RECORD_NOT_FOUND_SYMBOL);
         });
     });

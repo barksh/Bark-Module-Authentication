@@ -1537,6 +1537,13 @@
   dependencies:
     "@sudoo/magic" "^1.8.0"
 
+"@sudoo/log@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/log/-/log-1.8.0.tgz#c3197eb69b7bd9361370216b2b0706ff103a120b"
+  integrity sha512-AyNviE9+oUzrO3f0gZMTvCOBGe5xY+/aMwwmGapC1ZbeNPSl97EYO6St8dMqgJrH7MZi8uPbkL2hnTE/4U63fg==
+  dependencies:
+    "@sudoo/magic" "^1.9.0"
+
 "@sudoo/magic@^1.8.0", "@sudoo/magic@^1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@sudoo/magic/-/magic-1.9.0.tgz#8ba9485604d85c6f88dd891d393e3bb4bc508355"

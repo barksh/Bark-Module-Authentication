@@ -43,6 +43,8 @@ export const authenticationPostRealizeHandler: APIGatewayProxyHandler = wrapHand
         const inquiry: IInquiryModel | typeof InquiryEmptySymbol = await getInquiryByIdentifier(inquiryToken.header.jti as string);
 
         if (inquiry === InquiryEmptySymbol) {
+
+            console.error('Inquiry not found', inquiryToken.header.jti);
             return createErroredLambdaResponse(
                 HTTP_RESPONSE_CODE.NOT_FOUND,
                 panic.code(ERROR_CODE.INVALID_TOKEN),

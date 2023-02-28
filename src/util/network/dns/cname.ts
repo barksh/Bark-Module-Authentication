@@ -5,6 +5,7 @@
  */
 
 import * as DNS from "node:dns";
+import { logAgent } from "../../log/log";
 
 export const DNS_CNAME_RECORD_NOT_FOUND_SYMBOL = Symbol('dns-cname-record-not-found');
 
@@ -41,7 +42,7 @@ export const dnsLookupCName = (domain: string): Promise<string | typeof DNS_CNAM
         ) => {
 
             if (error) {
-                console.log("[BARK] DNS CNAME Error:", error);
+                logAgent.error("DNS CNAME Error:", error);
                 resolve(DNS_CNAME_RECORD_NOT_FOUND_SYMBOL);
                 return;
             }
@@ -51,7 +52,7 @@ export const dnsLookupCName = (domain: string): Promise<string | typeof DNS_CNAM
                 return;
             }
 
-            console.log("[BARK] DNS CNAME Internal Error, addresses:", addresses);
+            logAgent.error("DNS CNAME Internal Error, addresses:", error);
             resolve(DNS_CNAME_RECORD_NOT_FOUND_SYMBOL);
         });
     });
