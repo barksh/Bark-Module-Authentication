@@ -16,6 +16,7 @@ import { getInquiryByIdentifier, InquiryEmptySymbol } from "../../../database/co
 import { IInquiryModel } from "../../../database/model/inquiry";
 import { ERROR_CODE } from "../../../error/code";
 import { panic } from "../../../error/panic";
+import { logAgent } from "../../../util/log/log";
 import { createErroredLambdaResponse } from "../../common/response";
 import { wrapHandler } from "../../common/setup";
 
@@ -44,7 +45,7 @@ export const authenticationPostRealizeHandler: APIGatewayProxyHandler = wrapHand
 
         if (inquiry === InquiryEmptySymbol) {
 
-            console.error('Inquiry not found', inquiryToken.header.jti);
+            logAgent.error('Inquiry not found:', inquiryToken.header.jti);
             return createErroredLambdaResponse(
                 HTTP_RESPONSE_CODE.NOT_FOUND,
                 panic.code(ERROR_CODE.INVALID_TOKEN),

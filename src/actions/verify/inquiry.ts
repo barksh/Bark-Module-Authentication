@@ -57,8 +57,10 @@ export const verifyInquiryToken = async (inquiryToken: string): Promise<InquiryA
 
     const token: InquiryAuthToken = await parseVerifyInquiryToken(inquiryToken);
 
-    if (typeof token.header.iss !== Initializer.getInstance().getSelfDomain()) {
-        logAgent.info('Inquiry Token issuer not match, Header:', token.header, 'Body:', token.body);
+    const selfDomain: string = Initializer.getInstance().getSelfDomain();
+
+    if (token.header.iss !== selfDomain) {
+        logAgent.info('Inquiry Token issuer not match, Header:', token.header, 'Body:', token.body, "Self Domain:", selfDomain);
         throw panic.code(ERROR_CODE.INVALID_TOKEN);
     }
 

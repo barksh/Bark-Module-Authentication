@@ -19,4 +19,4 @@ export const logAgent: SudooLog = SudooLog.create(isProduction()
     ? LOG_LEVEL.ERROR
     : LOG_LEVEL.ALL,
 );
-logAgent.setScope('[Bark Module Authentication]');
+logAgent.setScope('Bark Module Authentication');

@@ -86,10 +86,16 @@ export class Initializer {
     private async terminate(): Promise<void> {
 
         if (!this._connection) {
+            logAgent.warning("Already terminated");
             return;
         }
+
+        logAgent.info("Terminating");
+
         this._initialized = false;
         await this._connection.close();
+
+        logAgent.info("Terminated");
     }
 
     private async initialize(): Promise<void> {
@@ -138,7 +144,7 @@ export class Initializer {
             return;
         } catch (err) {
 
-            console.error("[Authentication Module] Error during initialization:", err);
+            logAgent.error("Error during initialization:", err);
             throw err;
         }
     }
