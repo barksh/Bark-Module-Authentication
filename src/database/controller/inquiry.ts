@@ -46,3 +46,25 @@ export const getInquiryByIdentifier = async (
 
     return inquiry;
 };
+
+export const getValidInquiryByIdentifier = async (
+    inquiryIdentifier: string,
+    currentTime: Date = new Date(),
+): Promise<IInquiryModel | typeof InquiryEmptySymbol> => {
+
+    const inquiry: IInquiryModel | null = await InquiryModel.findOne({
+        inquiryIdentifier,
+        expireAt: {
+            $gt: currentTime,
+        },
+        issuedAt: {
+            $lt: currentTime,
+        },
+    }).exec();
+
+    if (!inquiry) {
+        return InquiryEmptySymbol;
+    }
+
+    return inquiry;
+};

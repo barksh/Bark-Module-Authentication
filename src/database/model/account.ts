@@ -56,6 +56,69 @@ const AccountSchema: Schema<IAccountModel> = new Schema(
             createdAt: true,
             updatedAt: true,
         },
+        methods: {
+            useAttemptPoint(this: IAccountModel, point: number): IAccountModel {
+
+                this.attemptPoints = this.attemptPoints - Math.abs(point);
+
+                return this;
+            },
+            addAttemptPoint(this: IAccountModel, point: number): IAccountModel {
+
+                this.attemptPoints = this.attemptPoints + Math.abs(point);
+
+                return this;
+            },
+            resetAttempt(this: IAccountModel, amount: number = defaultInitialAttemptPoints): IAccountModel {
+
+                this.attemptPoints = amount;
+
+                return this;
+            },
+            generateAndSetTwoFA(this: IAccountModel, systemName: string): string {
+
+                const key: string = generateTwoFactorKey();
+                const url: string = generateTwoFactorURL(systemName, this.identifier, key);
+
+                this.twoFactor = key;
+
+                return url;
+            },
+            verifyTwoFA(this: IAccountModel, code: string): boolean {
+
+                const key: string | undefined = this.twoFactor;
+
+                if (!key) {
+                    return false;
+                }
+
+                return verifyTwoFactorCode(key, code);
+            },
+            setPassword(this: IAccountModel, password: string): IAccountModel {
+
+                const saltilizer: Saltilizer = Saltilizer.create(this.salt);
+
+                const saltedPassword: string = saltilizer.encrypt(password);
+
+                this.password = saltedPassword;
+                this.resetMint();
+
+                return this;
+            },
+            resetMint(this: IAccountModel): IAccountModel {
+
+                this.mint = UUIDVersion1.generate().toString();
+
+                return this;
+            },
+            verifyPassword(this: IAccountModel, password: string): boolean {
+
+                const saltilizer: Saltilizer = Saltilizer.create(this.salt);
+                const saltedPassword: string = saltilizer.encrypt(password);
+
+                return this.password === saltedPassword;
+            },
+        }
     },
 );
 
@@ -70,74 +133,5 @@ export interface IAccountModel extends IAccount, Document {
     resetMint(): IAccountModel;
     verifyPassword(password: string): boolean;
 }
-
-AccountSchema.methods.useAttemptPoint = function (this: IAccountModel, point: number): IAccountModel {
-
-    this.attemptPoints = this.attemptPoints - Math.abs(point);
-
-    return this;
-};
-
-AccountSchema.methods.addAttemptPoint = function (this: IAccountModel, point: number): IAccountModel {
-
-    this.attemptPoints = this.attemptPoints + Math.abs(point);
-
-    return this;
-};
-
-AccountSchema.methods.resetAttempt = function (this: IAccountModel, amount: number = defaultInitialAttemptPoints): IAccountModel {
-
-    this.attemptPoints = amount;
-
-    return this;
-};
-
-AccountSchema.methods.generateAndSetTwoFA = function (this: IAccountModel, systemName: string): string {
-
-    const key: string = generateTwoFactorKey();
-    const url: string = generateTwoFactorURL(systemName, this.identifier, key);
-
-    this.twoFactor = key;
-
-    return url;
-};
-
-AccountSchema.methods.verifyTwoFA = function (this: IAccountModel, code: string): boolean {
-
-    const key: string | undefined = this.twoFactor;
-
-    if (!key) {
-        return false;
-    }
-
-    return verifyTwoFactorCode(key, code);
-};
-
-AccountSchema.methods.setPassword = function (this: IAccountModel, password: string): IAccountModel {
-
-    const saltilizer: Saltilizer = Saltilizer.create(this.salt);
-
-    const saltedPassword: string = saltilizer.encrypt(password);
-
-    this.password = saltedPassword;
-    this.resetMint();
-
-    return this;
-};
-
-AccountSchema.methods.resetMint = function (this: IAccountModel): IAccountModel {
-
-    this.mint = UUIDVersion1.generate().toString();
-
-    return this;
-};
-
-AccountSchema.methods.verifyPassword = function (this: IAccountModel, password: string): boolean {
-
-    const saltilizer: Saltilizer = Saltilizer.create(this.salt);
-    const saltedPassword: string = saltilizer.encrypt(password);
-
-    return this.password === saltedPassword;
-};
 
 export const AccountModel: Model<IAccountModel> = model<IAccountModel>('Account', AccountSchema);
