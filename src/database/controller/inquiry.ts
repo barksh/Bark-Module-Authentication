@@ -12,7 +12,8 @@ export const createUnsavedInquiry = (
     domain: string,
 ): IInquiryModel => {
 
-    const inquiryIdentifier: string = UUIDVersion4.generate().toString();
+    const inquiryIdentifier: string =
+        UUIDVersion4.generate().toString();
 
     const issueDate: Date = new Date();
     const expireDate: Date = new Date();

@@ -1511,17 +1511,17 @@
   resolved "https://registry.yarnpkg.com/@sudoo/eslint-config/-/eslint-config-1.9.0.tgz#b42d65c1458052680b185c4b31dec42ec26cfbab"
   integrity sha512-TgGdJQB93go9pknnDv5klolsa1bvJwiXVur+S5oL6TY0xg3C4QQeqeNHhOZ2qD4bkZ2upwr2N/LraUfxRJz8hg==
 
-"@sudoo/jwt-config@latest":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@sudoo/jwt-config/-/jwt-config-1.2.0.tgz#e6d752a3f22e1c0b1b847f56914517dd997c0fc3"
-  integrity sha512-8m2TdpkEE9awqX3sXEWe6fdLfNzDbBMdD3swGMhKR8diNoExZMU0sfXhe2X0n/PBqenmuMbt9XJFe/IaSwXaoA==
+"@sudoo/jwt-config@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/jwt-config/-/jwt-config-1.3.0.tgz#62c7507a5f78f6148ca255ea86036c330a11ab39"
+  integrity sha512-BqP0E0my8dsgMxNfC4BvZ2BLBqFoB2FLusxkUUmuJSqqbOrINNcIzTZkNHj7Ht5+3/pVPKpDPniLbqK2u9v7nw==
 
-"@sudoo/jwt@^3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@sudoo/jwt/-/jwt-3.4.0.tgz#4352cf76a3773d95debbad64e3d49c0c22fd3a58"
-  integrity sha512-f/5Np2dESOUIYLRra4PaGzo6Ycmzd3KlA8naaxspEFCnWMiFysxB1mTwQoYEDjzdLPBJyYEtFvPBxSSvbUz2Yg==
+"@sudoo/jwt@^3.5.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/jwt/-/jwt-3.5.0.tgz#08a64b08eb92c59bd1ef5405507dcb42f39c6ca2"
+  integrity sha512-ac1vEHFS63A1XHJyO9CO58Zt9PGF5wMhw7fKPjJmx9YjHpWIzL6paIkQhsCOakztnryePCstqeAwcx55NJzVyQ==
   dependencies:
-    "@sudoo/jwt-config" latest
+    "@sudoo/jwt-config" "^1.3.0"
 
 "@sudoo/lambda-verify@^1.5.0":
   version "1.5.0"
