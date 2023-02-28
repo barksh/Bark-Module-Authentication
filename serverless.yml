@@ -39,6 +39,12 @@ functions:
       - httpApi:
           path: /v1/authentication/inquiry
           method: post
+  AuthenticationRealizePost:
+    handler: src/handlers/v1/authentication/post-realize.authenticationPostRealizeHandler
+    events:
+      - httpApi:
+          path: /v1/authentication/realize
+          method: post
   SecretPublicKeyPost:
     handler: src/handlers/v1/secret/post-public-key-fetch.secretPostPublicKeyFetchHandler
     events:
