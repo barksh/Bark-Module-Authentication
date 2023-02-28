@@ -54,8 +54,9 @@ export const getDecryptedSecretByDomain = async (
         secret.initVector,
     );
 
+    const secretObject: ISecret = secret.toObject();
     return {
-        ...secret.toObject(),
+        ...secretObject,
         privateKey,
     };
 };
@@ -72,7 +73,8 @@ export const getSecretByDomain = async (
         return null;
     }
 
+    const secretObject: ISecret = secret.toObject();
     return {
-        ...secret.toObject(),
+        ...secretObject,
     };
 };

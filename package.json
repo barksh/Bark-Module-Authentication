@@ -3,6 +3,7 @@
     "private": true,
     "version": "1.0.0",
     "dependencies": {
+        "@sudoo/jwt": "^3.4.0",
         "@sudoo/lambda": "^2.0.0",
         "@sudoo/lambda-verify": "^1.5.0",
         "@sudoo/magic": "^1.9.0",
@@ -11,6 +12,7 @@
         "@sudoo/random": "^2.2.0",
         "@sudoo/token": "^1.6.1",
         "@sudoo/triforce-mongoose": "^1.6.0",
+        "@sudoo/uuid": "^1.1.0",
         "@sudoo/verify": "^1.19.0",
         "connor": "^2.7.0",
         "speakeasy": "^2.0.0"
@@ -18,6 +20,7 @@
     "devDependencies": {
         "@sudoo/triforce": "^3.10.1",
         "@sudoo/triforce-mongoose-dev": "^1.6.0",
+        "@types/aws-lambda": "^8.10.111",
         "@types/speakeasy": "^2.0.7",
         "aws-lambda": "^1.0.7",
         "serverless": "^3.27.0",

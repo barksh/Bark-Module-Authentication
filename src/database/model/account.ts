@@ -5,7 +5,7 @@
  */
 
 import { Saltilizer } from "@sudoo/password";
-import { randomUnique } from "@sudoo/random";
+import { UUIDVersion1 } from "@sudoo/uuid";
 import { Document, model, Model, Schema } from "mongoose";
 import { generateTwoFactorKey, generateTwoFactorURL, verifyTwoFactorCode } from "../../util/two-factor";
 import { defaultInitialAttemptPoints } from "../declare/account";
@@ -21,6 +21,7 @@ const AccountSchema: Schema<IAccountModel> = new Schema(
         identifier: {
             type: String,
             required: true,
+            index: true,
         },
         attemptPoints: {
             type: Number,
@@ -126,7 +127,7 @@ AccountSchema.methods.setPassword = function (this: IAccountModel, password: str
 
 AccountSchema.methods.resetMint = function (this: IAccountModel): IAccountModel {
 
-    this.mint = randomUnique();
+    this.mint = UUIDVersion1.generate().toString();
 
     return this;
 };

@@ -12,6 +12,7 @@ const SecretSchema: Schema<ISecretModel> = new Schema(
         domain: {
             type: String,
             required: true,
+            index: true,
             unique: true,
         },
         publicKey: {

@@ -7,16 +7,16 @@
 import * as Mongoose from "mongoose";
 
 Mongoose.set("strictQuery", false);
+Mongoose.set("bufferCommands", false);
 
 export const connectDatabase = async (database: string): Promise<Mongoose.Connection> => {
 
-    const connection = await Mongoose.createConnection(
+    const connection: typeof Mongoose = await Mongoose.connect(
         database,
         {
-            connectTimeoutMS: 2000,
             autoCreate: true,
             autoIndex: true,
         },
-    ).asPromise();
-    return connection;
+    );
+    return connection.connection;
 };

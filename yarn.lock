@@ -1511,6 +1511,18 @@
   resolved "https://registry.yarnpkg.com/@sudoo/eslint-config/-/eslint-config-1.9.0.tgz#b42d65c1458052680b185c4b31dec42ec26cfbab"
   integrity sha512-TgGdJQB93go9pknnDv5klolsa1bvJwiXVur+S5oL6TY0xg3C4QQeqeNHhOZ2qD4bkZ2upwr2N/LraUfxRJz8hg==
 
+"@sudoo/jwt-config@latest":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/jwt-config/-/jwt-config-1.2.0.tgz#e6d752a3f22e1c0b1b847f56914517dd997c0fc3"
+  integrity sha512-8m2TdpkEE9awqX3sXEWe6fdLfNzDbBMdD3swGMhKR8diNoExZMU0sfXhe2X0n/PBqenmuMbt9XJFe/IaSwXaoA==
+
+"@sudoo/jwt@^3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/jwt/-/jwt-3.4.0.tgz#4352cf76a3773d95debbad64e3d49c0c22fd3a58"
+  integrity sha512-f/5Np2dESOUIYLRra4PaGzo6Ycmzd3KlA8naaxspEFCnWMiFysxB1mTwQoYEDjzdLPBJyYEtFvPBxSSvbUz2Yg==
+  dependencies:
+    "@sudoo/jwt-config" latest
+
 "@sudoo/lambda-verify@^1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@sudoo/lambda-verify/-/lambda-verify-1.5.0.tgz#2000638bf5a99ff8a992d1b261eaef74f78bbac2"
@@ -1614,6 +1626,11 @@
   resolved "https://registry.yarnpkg.com/@sudoo/tsconfig/-/tsconfig-1.6.0.tgz#4c03395d7ddb10f3666d9437820f1d92c6f06895"
   integrity sha512-o9mL3Bxt5C3PXa5mR+E4aejg+2OK+nU9sekFRPB7MFk5NNX1tgsK8DGD00OOHxDt7pFdO3EkOdBLzdNZbjSzoQ==
 
+"@sudoo/uuid@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/uuid/-/uuid-1.1.0.tgz#857d8432589a5dc0796cf3caf77b0afe3a327cff"
+  integrity sha512-80C+ohrfuydwCsJWr9ebtjuBDWQ8B6cBOLs9oQmv3AoQMP50KTV8uUiD5BKaGiwVHv0rABQ2j/ydR4/r5X4UYg==
+
 "@sudoo/verify@^1.19.0":
   version "1.19.0"
   resolved "https://registry.yarnpkg.com/@sudoo/verify/-/verify-1.19.0.tgz#37c01d8d0d5254e6dc4313e6af936ffaa64d2b1f"
@@ -1650,6 +1667,11 @@
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.3.tgz#472eaab5f15c1ffdd7f8628bd4c4f753995ec79e"
   integrity sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==
+
+"@types/aws-lambda@^8.10.111":
+  version "8.10.111"
+  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.111.tgz#9107c405f3011a5c423b5ac93fbf279439558571"
+  integrity sha512-8HR9UjIKmoemEzE2BviVtFkeenxfbizSu8raFjnT2VXxguZZ2JTlNww7INOH7IA0J/zRa3TjOftkYq6hVNkxDA==
 
 "@types/cacheable-request@^6.0.1":
   version "6.0.3"

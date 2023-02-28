@@ -8,7 +8,9 @@ import { createSucceedLambdaResponse } from "@sudoo/lambda";
 import { LambdaVerifier, VerifiedAPIGatewayProxyEvent } from "@sudoo/lambda-verify";
 import { createStrictMapPattern, createStringPattern } from "@sudoo/pattern";
 import { APIGatewayProxyHandler, APIGatewayProxyResult, Context } from "aws-lambda";
-import { Initializer } from "../../../initialize/initializer";
+import { getOrCreateSecretByDomain } from "../../../actions/secret/get-or-create";
+import { ISecret } from "../../../database/interface/secret";
+import { wrapHandler } from "../../common/setup";
 
 const verifier: LambdaVerifier = LambdaVerifier.create()
     .setBodyPattern(
@@ -21,15 +23,16 @@ type Body = {
     readonly domain: string;
 };
 
-export const secretPostPublicKeyFetchHandler: APIGatewayProxyHandler = verifier.warpAPIGateWayProxyHandler(
+export const secretPostPublicKeyFetchHandler: APIGatewayProxyHandler = wrapHandler(verifier,
     async (event: VerifiedAPIGatewayProxyEvent, _context: Context): Promise<APIGatewayProxyResult> => {
 
         const body: Body = event.verifiedBody;
 
-        await Initializer.initialize();
+        const secret: ISecret = await getOrCreateSecretByDomain(body.domain);
 
         return createSucceedLambdaResponse({
             domain: body.domain,
+            publicKey: secret.publicKey,
         });
     },
 );

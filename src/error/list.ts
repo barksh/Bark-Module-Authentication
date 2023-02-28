@@ -8,7 +8,11 @@ import { ERROR_CODE } from "./code";
 
 export const ERROR_LIST: Record<ERROR_CODE, string> = {
 
+    [ERROR_CODE.INVALID_IDENTIFIER_1]: 'Invalid Identifier, {}',
+    [ERROR_CODE.INVALID_PASSWORD_1]: 'Invalid Password, {}',
     [ERROR_CODE.INVALID_DOMAIN_1]: 'Invalid Domain, {}',
+
+    [ERROR_CODE.ACCOUNT_NOT_FOUND_OR_INCORRECT_PASSWORD_1]: 'Account Not Found Or Incorrect Password, {}',
 
     [ERROR_CODE.APPLICATION_NOT_INITIALIZED]: 'Application Not Initialized',
     [ERROR_CODE.ENVIRONMENT_VARIABLE_REQUIRED_BUT_NOT_FOUND_1]: 'Environment Variable Required But Not Found, {}',

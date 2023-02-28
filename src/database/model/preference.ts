@@ -12,6 +12,7 @@ const PreferenceSchema: Schema<IPreferenceModel> = new Schema(
         key: {
             type: String,
             required: true,
+            index: true,
             unique: true,
         },
         value: {

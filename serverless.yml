@@ -12,7 +12,8 @@ provider:
     minimumCompressionSize: 1024
   environment:
     AUTHENTICATION_MONGO_DB: ${env:AUTHENTICATION_MONGO_DB}
-    SECRET_KEY: ${env:SECRET_KEY}
+    AUTHENTICATION_SECRET_KEY: ${env:AUTHENTICATION_SECRET_KEY}
+    AUTHENTICATION_SELF_DOMAIN: ${env:AUTHENTICATION_SELF_DOMAIN}
 
 plugins:
   - serverless-offline
@@ -26,15 +27,21 @@ custom:
     httpPort: 4000
 
 functions:
+  AccountCreatePost:
+    handler: src/handlers/v1/account/post-register.accountPostRegisterHandler
+    events:
+      - httpApi:
+          path: /v1/account/register
+          method: post
+  AuthenticationInquiryPost:
+    handler: src/handlers/v1/authentication/post-inquiry.authenticationPostInquiryHandler
+    events:
+      - httpApi:
+          path: /v1/authentication/inquiry
+          method: post
   SecretPublicKeyPost:
     handler: src/handlers/v1/secret/post-public-key-fetch.secretPostPublicKeyFetchHandler
     events:
       - httpApi:
           path: /v1/secret/public-key/fetch
-          method: post
-  AccountCreatePost:
-    handler: src/handlers/v1/account/create.createAccountHandler
-    events:
-      - httpApi:
-          path: /v1/account/create
           method: post

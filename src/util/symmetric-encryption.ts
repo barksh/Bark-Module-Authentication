@@ -19,7 +19,10 @@ export const encryptPrivateKey = (
 
     const algorithm = "aes-256-cbc";
 
-    const cipher = Crypto.createCipheriv(algorithm, securityKey, initVector);
+    const securityKeyBuffer: Buffer = Buffer.from(securityKey, "hex");
+    const initVectorBuffer: Buffer = Buffer.from(initVector, "hex");
+
+    const cipher = Crypto.createCipheriv(algorithm, securityKeyBuffer, initVectorBuffer);
 
     let encryptedData = cipher.update(privateKey, "utf-8", "hex");
     encryptedData += cipher.final("hex");
@@ -35,7 +38,10 @@ export const decryptPrivateKey = (
 
     const algorithm = "aes-256-cbc";
 
-    const decipher = Crypto.createDecipheriv(algorithm, securityKey, initVector);
+    const securityKeyBuffer: Buffer = Buffer.from(securityKey, "hex");
+    const initVectorBuffer: Buffer = Buffer.from(initVector, "hex");
+
+    const decipher = Crypto.createDecipheriv(algorithm, securityKeyBuffer, initVectorBuffer);
 
     let decryptedData = decipher.update(encryptedPrivateKey, "hex", "utf-8");
     decryptedData += decipher.final("utf-8");

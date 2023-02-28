@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
  * @namespace Database_Declare
- * @description Declare
+ * @description Account
  */
 
 export const defaultInitialAttemptPoints: number = 100;
