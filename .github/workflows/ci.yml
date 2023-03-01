@@ -11,7 +11,10 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    environment: BarkSH
+    env:
+      AUTHENTICATION_MONGO_DB: "PLACEHOLDER"
+      AUTHENTICATION_SECRET_KEY: "PLACEHOLDER"
+      AUTHENTICATION_SELF_DOMAIN: "PLACEHOLDER"
     strategy:
       matrix:
         os:

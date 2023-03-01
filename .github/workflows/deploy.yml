@@ -37,5 +37,8 @@ jobs:
         with:
           args: deploy
         env:
+          AUTHENTICATION_MONGO_DB: ${{ secrets.AUTHENTICATION_MONGO_DB }}
+          AUTHENTICATION_SECRET_KEY: ${{ secrets.AUTHENTICATION_SECRET_KEY }}
+          AUTHENTICATION_SELF_DOMAIN: ${{ secrets.AUTHENTICATION_SELF_DOMAIN }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
