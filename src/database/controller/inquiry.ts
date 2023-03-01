@@ -38,6 +38,7 @@ export const createUnsavedInquiry = (
         hiddenKey,
         callbackUrl: config.callbackUrl,
         webhookUrl: config.webhookUrl,
+        realized: false,
         domain,
         issuedAt: issueDate,
         expireAt: expireDate,
@@ -67,6 +68,80 @@ export const getValidInquiryByIdentifier = async (
 
     const inquiry: IInquiryModel | null = await InquiryModel.findOne({
         inquiryIdentifier,
+        expireAt: {
+            $gt: currentTime,
+        },
+        issuedAt: {
+            $lt: currentTime,
+        },
+    }).exec();
+
+    if (!inquiry) {
+        return InquiryEmptySymbol;
+    }
+
+    return inquiry;
+};
+
+export const getInquiryByExposureKey = async (
+    exposureKey: string,
+): Promise<IInquiryModel | typeof InquiryEmptySymbol> => {
+
+    const inquiry: IInquiryModel | null = await InquiryModel.findOne({
+        exposureKey,
+    }).exec();
+
+    if (!inquiry) {
+        return InquiryEmptySymbol;
+    }
+
+    return inquiry;
+};
+
+export const getValidInquiryByExposureKey = async (
+    exposureKey: string,
+    currentTime: Date = new Date(),
+): Promise<IInquiryModel | typeof InquiryEmptySymbol> => {
+
+    const inquiry: IInquiryModel | null = await InquiryModel.findOne({
+        exposureKey,
+        expireAt: {
+            $gt: currentTime,
+        },
+        issuedAt: {
+            $lt: currentTime,
+        },
+    }).exec();
+
+    if (!inquiry) {
+        return InquiryEmptySymbol;
+    }
+
+    return inquiry;
+};
+
+export const getInquiryByHiddenKey = async (
+    hiddenKey: string,
+): Promise<IInquiryModel | typeof InquiryEmptySymbol> => {
+
+    const inquiry: IInquiryModel | null = await InquiryModel.findOne({
+        hiddenKey,
+    }).exec();
+
+    if (!inquiry) {
+        return InquiryEmptySymbol;
+    }
+
+    return inquiry;
+};
+
+export const getValidInquiryByHiddenKey = async (
+    hiddenKey: string,
+    currentTime: Date = new Date(),
+): Promise<IInquiryModel | typeof InquiryEmptySymbol> => {
+
+    const inquiry: IInquiryModel | null = await InquiryModel.findOne({
+        hiddenKey,
         expireAt: {
             $gt: currentTime,
         },

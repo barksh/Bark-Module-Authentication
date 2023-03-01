@@ -26,9 +26,24 @@ const InquirySchema: Schema<IInquiryModel> = new Schema(
             index: true,
         },
 
+        webhookUrl: {
+            type: String,
+            required: false,
+        },
         callbackUrl: {
             type: String,
             required: false,
+        },
+
+        realized: {
+            type: Boolean,
+            required: true,
+            default: false,
+        },
+        accountIdentifier: {
+            type: String,
+            required: false,
+            index: true,
         },
 
         domain: {

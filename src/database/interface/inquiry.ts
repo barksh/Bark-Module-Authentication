@@ -15,6 +15,9 @@ export interface IInquiryConfig {
     readonly webhookUrl?: string;
     readonly callbackUrl?: string;
 
+    realized: boolean;
+    accountIdentifier?: string;
+
     readonly domain: string;
 
     readonly issuedAt: Date;
