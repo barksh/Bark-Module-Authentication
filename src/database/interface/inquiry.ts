@@ -7,10 +7,11 @@
 
 export interface IInquiryConfig {
 
-    readonly accountIdentifier: string;
     readonly inquiryIdentifier: string;
+    readonly accountIdentifier: string;
 
     readonly domain: string;
+
     readonly issuedAt: Date;
     readonly expireAt: Date;
 }

@@ -9,20 +9,22 @@ import { IInquiry } from "../interface/inquiry";
 
 const InquirySchema: Schema<IInquiryModel> = new Schema(
     {
-        accountIdentifier: {
-            type: String,
-            required: true,
-            index: true,
-        },
         inquiryIdentifier: {
             type: String,
             required: true,
             index: true,
         },
+        accountIdentifier: {
+            type: String,
+            required: true,
+            index: true,
+        },
+
         domain: {
             type: String,
             required: true,
         },
+
         issuedAt: {
             type: Date,
             required: true,
@@ -37,6 +39,8 @@ const InquirySchema: Schema<IInquiryModel> = new Schema(
             createdAt: true,
             updatedAt: true,
         },
+        id: false,
+        _id: false,
     },
 );
 
