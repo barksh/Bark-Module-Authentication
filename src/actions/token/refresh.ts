@@ -11,7 +11,10 @@ import { IDecryptedSecretConfig } from "../../database/interface/secret";
 import { IInquiryModel } from "../../database/model/inquiry";
 import { IRefreshTokenModel } from "../../database/model/refresh-token";
 import { Initializer } from "../../initialize/initializer";
+import { logAgent } from "../../util/log/log";
 import { getOrCreateDecryptedSecretByDomain } from "../secret/get-or-create";
+
+export const UnableToGenerateRefreshTokenSymbol = Symbol('unable-to-generate-refresh-token-symbol');
 
 export type GenerateRefreshTokenConfig = {
 
@@ -33,9 +36,16 @@ export type RefreshAuthToken = JWTToken<RefreshTokenHeader, RefreshTokenBody>;
 
 export const generateRefreshToken = async (
     config: GenerateRefreshTokenConfig,
-): Promise<string> => {
+): Promise<string | typeof UnableToGenerateRefreshTokenSymbol> => {
 
     const inquiry: IInquiryModel = config.inquiry;
+
+    if (!inquiry.realized
+        || typeof inquiry.accountIdentifier !== 'string') {
+
+        logAgent.error('Inquiry not realized, inquiry identifier:', inquiry.inquiryIdentifier);
+        return UnableToGenerateRefreshTokenSymbol;
+    }
 
     const secret: IDecryptedSecretConfig = await getOrCreateDecryptedSecretByDomain(
         inquiry.domain,

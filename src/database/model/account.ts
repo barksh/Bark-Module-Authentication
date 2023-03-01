@@ -56,6 +56,8 @@ const AccountSchema: Schema<IAccountModel> = new Schema(
             createdAt: true,
             updatedAt: true,
         },
+        id: false,
+        _id: false,
         methods: {
             useAttemptPoint(this: IAccountModel, point: number): IAccountModel {
 

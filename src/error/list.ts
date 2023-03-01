@@ -15,7 +15,16 @@ export const ERROR_LIST: Record<ERROR_CODE, string> = {
 
     [ERROR_CODE.INVALID_TOKEN]: 'Invalid Token',
 
+    [ERROR_CODE.INQUIRY_NOT_REALIZED_1]: 'Inquiry Not Realized, {}',
+
     [ERROR_CODE.ACCOUNT_NOT_FOUND_OR_INCORRECT_PASSWORD_1]: 'Account Not Found Or Incorrect Password, {}',
+    [ERROR_CODE.ACCOUNT_NOT_FOUND_1]: 'Account Not Found, {}',
+    [ERROR_CODE.INQUIRY_NOT_FOUND_BY_EXPOSURE_KEY_1]: 'Inquiry Not Found By Exposure Key, {}',
+    [ERROR_CODE.INQUIRY_NOT_FOUND_BY_HIDDEN_KEY_1]: 'Inquiry Not Found By Hidden Key, {}',
+    [ERROR_CODE.PREFERENCE_NOT_FOUND_1]: 'Preference Not Found, {}',
+    [ERROR_CODE.RECORD_NOT_FOUND_1]: 'Record Not Found, {}',
+    [ERROR_CODE.REFRESH_TOKEN_NOT_FOUND_1]: 'Refresh Token Not Found, {}',
+    [ERROR_CODE.SECRET_NOT_FOUND_1]: 'Secret Not Found, {}',
 
     [ERROR_CODE.APPLICATION_NOT_INITIALIZED]: 'Application Not Initialized',
     [ERROR_CODE.ENVIRONMENT_VARIABLE_REQUIRED_BUT_NOT_FOUND_1]: 'Environment Variable Required But Not Found, {}',

@@ -45,6 +45,12 @@ functions:
       - httpApi:
           path: /v1/authentication/realize
           method: post
+  AuthenticationRedeemPost:
+    handler: src/handlers/v1/authentication/post-redeem.authenticationPostRedeemHandler
+    events:
+      - httpApi:
+          path: /v1/authentication/redeem
+          method: post
   AuthenticationRefreshPost:
     handler: src/handlers/v1/authentication/post-refresh.authenticationPostRefreshHandler
     events:
