@@ -8,7 +8,12 @@
 export interface IInquiryConfig {
 
     readonly inquiryIdentifier: string;
-    readonly accountIdentifier: string;
+
+    readonly exposureKey: string;
+    readonly hiddenKey: string;
+
+    readonly webhookUrl?: string;
+    readonly callbackUrl?: string;
 
     readonly domain: string;
 

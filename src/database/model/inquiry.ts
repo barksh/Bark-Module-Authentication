@@ -14,10 +14,21 @@ const InquirySchema: Schema<IInquiryModel> = new Schema(
             required: true,
             index: true,
         },
-        accountIdentifier: {
+
+        exposureKey: {
             type: String,
             required: true,
             index: true,
+        },
+        hiddenKey: {
+            type: String,
+            required: true,
+            index: true,
+        },
+
+        callbackUrl: {
+            type: String,
+            required: false,
         },
 
         domain: {
