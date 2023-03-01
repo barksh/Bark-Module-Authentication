@@ -102,6 +102,7 @@ export class Initializer {
 
         if (this._initialized) {
             logAgent.warning("Already initialized");
+            return;
         }
         this._initialized = true;
 

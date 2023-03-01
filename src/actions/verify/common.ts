@@ -17,7 +17,7 @@ export const getAuthorizationField = (headers: any): any => {
 
 export const verifyCommonTokenFields = (token: JWTToken<{
     readonly purpose: string;
-}, any>): boolean => {
+}, any>, purpose: string): boolean => {
 
     if (typeof token.header.exp !== 'number') {
         logAgent.error('Token ExpiredAt not exist, Header:', token.header, 'Body:', token.body);
@@ -29,7 +29,12 @@ export const verifyCommonTokenFields = (token: JWTToken<{
         return false;
     }
 
-    if (token.header.purpose !== 'Bark') {
+    if (token.header.kty !== 'Bark') {
+        logAgent.error('Token Key Type Invalid, Header:', token.header, 'Body:', token.body);
+        return false;
+    }
+
+    if (token.header.purpose !== purpose) {
         logAgent.error('Token Purpose Invalid, Header:', token.header, 'Body:', token.body);
         return false;
     }

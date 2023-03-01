@@ -19,10 +19,6 @@ const InquirySchema: Schema<IInquiryModel> = new Schema(
             required: true,
             index: true,
         },
-        refreshTokens: {
-            type: [String],
-            required: true,
-        },
         domain: {
             type: String,
             required: true,
@@ -41,23 +37,10 @@ const InquirySchema: Schema<IInquiryModel> = new Schema(
             createdAt: true,
             updatedAt: true,
         },
-        methods: {
-            attachRefreshToken(this: IInquiryModel, refreshTokenIdentifier: string): IInquiryModel {
-
-                this.refreshTokens = [
-                    ...this.refreshTokens,
-                    refreshTokenIdentifier,
-                ];
-
-                return this;
-            },
-        }
     },
 );
 
 export interface IInquiryModel extends IInquiry, Document {
-
-    attachRefreshToken(refreshTokenIdentifier: string): IInquiryModel;
 }
 
 export const InquiryModel: Model<IInquiryModel> = model<IInquiryModel>('Inquiry', InquirySchema);

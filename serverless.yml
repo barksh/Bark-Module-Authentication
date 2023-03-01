@@ -45,6 +45,12 @@ functions:
       - httpApi:
           path: /v1/authentication/realize
           method: post
+  AuthenticationRefreshPost:
+    handler: src/handlers/v1/authentication/post-refresh.authenticationPostRefreshHandler
+    events:
+      - httpApi:
+          path: /v1/authentication/refresh
+          method: post
   SecretPublicKeyPost:
     handler: src/handlers/v1/secret/post-public-key-fetch.secretPostPublicKeyFetchHandler
     events:

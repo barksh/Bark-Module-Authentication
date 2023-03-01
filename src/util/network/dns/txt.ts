@@ -6,6 +6,7 @@
 
 import * as DNS from "node:dns";
 import { logAgent } from "../../log/log";
+import { getDomainHostOfURL, validateDomainName } from "../domain";
 
 export const DNS_TXT_RECORD_NOT_FOUND_SYMBOL = Symbol('dns-txt-record-not-found');
 
@@ -19,19 +20,26 @@ export const dnsLookupAuthModuleTxt = async (domain: string): Promise<string[]> 
             `${ALLOWED_CALLBACK_PREFIX}.${domain}`,
         );
 
+    const domainHost: string = getDomainHostOfURL(domain);
+
     if (txtValue === DNS_TXT_RECORD_NOT_FOUND_SYMBOL) {
-        return [domain];
+        logAgent.debug("Domain Host not found TXT record:", domainHost);
+        return [domainHost];
     }
 
     const domainList: string[] = txtValue
         .split(',')
-        .map((each: string) => each.trim());
+        .map((each: string) => each.trim())
+        .filter((each: string) => validateDomainName(each));
 
-    if (domainList.includes(domain)) {
+
+    if (domainList.includes(domainHost)) {
+        logAgent.debug("Domain Host already in list:", domainHost, domainList);
         return domainList;
     }
 
-    return [domain, ...domainList];
+    logAgent.debug("Domain Host not in list:", domainHost, domainList);
+    return [domainHost, ...domainList];
 };
 
 export const dnsLookupTxt = (domain: string): Promise<string | typeof DNS_TXT_RECORD_NOT_FOUND_SYMBOL> => {

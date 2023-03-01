@@ -6,14 +6,14 @@
 
 import { JWTCreator, JWTToken } from "@sudoo/jwt";
 import { UUIDVersion4 } from "@sudoo/uuid";
-import { IInquiry } from "../../database/interface/inquiry";
+import { IRefreshToken } from "../../database/interface/refresh-token";
 import { IDecryptedSecretConfig } from "../../database/interface/secret";
 import { Initializer } from "../../initialize/initializer";
 import { getOrCreateDecryptedSecretByDomain } from "../secret/get-or-create";
 
 export type GenerateAuthenticationTokenConfig = {
 
-    readonly inquiry: IInquiry;
+    readonly refreshToken: IRefreshToken;
 };
 
 export type AuthenticationTokenHeader = {
@@ -32,10 +32,10 @@ export const generateAuthenticationToken = async (
     config: GenerateAuthenticationTokenConfig,
 ): Promise<string> => {
 
-    const inquiry: IInquiry = config.inquiry;
+    const refreshToken: IRefreshToken = config.refreshToken;
 
     const secret: IDecryptedSecretConfig = await getOrCreateDecryptedSecretByDomain(
-        inquiry.domain,
+        refreshToken.domain,
     );
 
     const creator: JWTCreator<AuthenticationTokenHeader, AuthenticationTokenBody> =
@@ -54,12 +54,12 @@ export const generateAuthenticationToken = async (
         identifier: authenticationTokenIdentifier,
         keyType: 'Bark',
         issuer: Initializer.getInstance().getSelfDomain(),
-        audience: inquiry.domain,
+        audience: refreshToken.domain,
         header: {
             purpose: 'Authentication',
         },
         body: {
-            identifier: inquiry.accountIdentifier,
+            identifier: refreshToken.accountIdentifier,
         },
     });
 

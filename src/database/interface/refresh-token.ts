@@ -1,21 +1,24 @@
 /**
  * @author WMXPY
  * @namespace Database_Interface
- * @description Inquiry
+ * @description Refresh Token
  */
 
 
-export interface IInquiryConfig {
+export interface IRefreshTokenConfig {
 
     readonly accountIdentifier: string;
     readonly inquiryIdentifier: string;
+    readonly refreshTokenIdentifier: string;
+
+    authenticationTokens: string[];
 
     readonly domain: string;
     readonly issuedAt: Date;
     readonly expireAt: Date;
 }
 
-export interface IInquiry extends IInquiryConfig {
+export interface IRefreshToken extends IRefreshTokenConfig {
 
     readonly createdAt: Date;
     readonly updatedAt: Date;

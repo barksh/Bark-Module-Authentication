@@ -5,6 +5,7 @@
  */
 
 import { UUIDVersion4 } from "@sudoo/uuid";
+import { IInquiryConfig } from "../interface/inquiry";
 import { IInquiryModel, InquiryModel } from "../model/inquiry";
 
 export const InquiryEmptySymbol = Symbol('inquiry-empty');
@@ -24,11 +25,10 @@ export const createUnsavedInquiry = (
     const inquiry: IInquiryModel = new InquiryModel({
         accountIdentifier,
         inquiryIdentifier,
-        refreshTokens: [],
         domain,
         issuedAt: issueDate,
         expireAt: expireDate,
-    });
+    } as IInquiryConfig);
     return inquiry;
 };
 

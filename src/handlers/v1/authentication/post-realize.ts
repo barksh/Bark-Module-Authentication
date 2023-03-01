@@ -12,7 +12,7 @@ import { APIGatewayProxyHandler, APIGatewayProxyResult, Context } from "aws-lamb
 import { InquiryAuthToken } from "../../../actions/token/inquiry";
 import { generateRefreshToken } from "../../../actions/token/refresh";
 import { verifyInquiryToken } from "../../../actions/verify/inquiry";
-import { getInquiryByIdentifier, InquiryEmptySymbol } from "../../../database/controller/inquiry";
+import { getValidInquiryByIdentifier, InquiryEmptySymbol } from "../../../database/controller/inquiry";
 import { IInquiryModel } from "../../../database/model/inquiry";
 import { ERROR_CODE } from "../../../error/code";
 import { panic } from "../../../error/panic";
@@ -41,7 +41,9 @@ export const authenticationPostRealizeHandler: APIGatewayProxyHandler = wrapHand
 
         const inquiryToken: InquiryAuthToken = await verifyInquiryToken(body.inquiryToken);
 
-        const inquiry: IInquiryModel | typeof InquiryEmptySymbol = await getInquiryByIdentifier(inquiryToken.header.jti as string);
+        const inquiry: IInquiryModel | typeof InquiryEmptySymbol = await getValidInquiryByIdentifier(
+            inquiryToken.header.jti as string,
+        );
 
         if (inquiry === InquiryEmptySymbol) {
 

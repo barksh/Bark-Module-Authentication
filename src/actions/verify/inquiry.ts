@@ -18,7 +18,7 @@ export const parseVerifyInquiryToken = async (token: string): Promise<InquiryAut
 
     const instance: InquiryAuthToken = JWTToken.fromTokenOrThrow(token);
 
-    if (!verifyCommonTokenFields(instance)) {
+    if (!verifyCommonTokenFields(instance, 'Inquiry')) {
         logAgent.info('Inquiry Token common fields not match, Header:', instance.header, 'Body:', instance.body);
         throw panic.code(ERROR_CODE.INVALID_TOKEN);
     }

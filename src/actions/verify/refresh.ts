@@ -18,7 +18,7 @@ export const parseVerifyRefreshToken = async (token: string): Promise<RefreshAut
 
     const instance: RefreshAuthToken = JWTToken.fromTokenOrThrow(token);
 
-    if (!verifyCommonTokenFields(instance)) {
+    if (!verifyCommonTokenFields(instance, 'Refresh')) {
         logAgent.info('Inquiry Token common fields not match, Header:', instance.header, 'Body:', instance.body);
         throw panic.code(ERROR_CODE.INVALID_TOKEN);
     }

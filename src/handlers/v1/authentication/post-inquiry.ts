@@ -7,7 +7,7 @@
 import { createSucceedLambdaResponse } from "@sudoo/lambda";
 import { LambdaVerifier, VerifiedAPIGatewayProxyEvent } from "@sudoo/lambda-verify";
 import { HTTP_RESPONSE_CODE } from "@sudoo/magic";
-import { createStrictMapPattern, createStringPattern } from "@sudoo/pattern";
+import { createCustomPattern, createStrictMapPattern, createStringPattern } from "@sudoo/pattern";
 import { APIGatewayProxyHandler, APIGatewayProxyResult, Context } from "aws-lambda";
 import { generateInquiryToken } from "../../../actions/token/inquiry";
 import { AccountEmptySymbol, getAccountByIdentifier } from "../../../database/controller/account";
@@ -15,13 +15,16 @@ import { IAccountModel } from "../../../database/model/account";
 import { ERROR_CODE } from "../../../error/code";
 import { panic } from "../../../error/panic";
 import { dnsLookupAuthModuleTxt } from "../../../util/network/dns/txt";
+import { getDomainHostOfURL, validateDomainName } from "../../../util/network/domain";
 import { createErroredLambdaResponse } from "../../common/response";
 import { wrapHandler } from "../../common/setup";
 
 const verifier: LambdaVerifier = LambdaVerifier.create()
     .setBodyPattern(
         createStrictMapPattern({
-            domain: createStringPattern(),
+            domain: createCustomPattern((domain) => {
+                return validateDomainName(domain);
+            }),
             callbackUrl: createStringPattern(),
             identifier: createStringPattern(),
             password: createStringPattern(),
@@ -44,7 +47,9 @@ export const authenticationPostInquiryHandler: APIGatewayProxyHandler = wrapHand
         const body: Body = event.verifiedBody;
 
         const availableCallbackUrls: string[] = await dnsLookupAuthModuleTxt(body.domain);
-        if (!availableCallbackUrls.includes(body.callbackUrl)) {
+        const callbackUrlDomain: string = getDomainHostOfURL(body.callbackUrl);
+
+        if (!availableCallbackUrls.includes(callbackUrlDomain)) {
             return createErroredLambdaResponse(
                 HTTP_RESPONSE_CODE.NOT_FOUND,
                 panic.code(ERROR_CODE.INVALID_CALLBACK_URL_1, body.callbackUrl),

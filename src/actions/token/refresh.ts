@@ -6,8 +6,10 @@
 
 import { JWTCreator, JWTToken } from "@sudoo/jwt";
 import { UUIDVersion4 } from "@sudoo/uuid";
+import { createUnsavedRefreshToken } from "../../database/controller/refresh-token";
 import { IDecryptedSecretConfig } from "../../database/interface/secret";
 import { IInquiryModel } from "../../database/model/inquiry";
+import { IRefreshTokenModel } from "../../database/model/refresh-token";
 import { Initializer } from "../../initialize/initializer";
 import { getOrCreateDecryptedSecretByDomain } from "../secret/get-or-create";
 
@@ -49,7 +51,11 @@ export const generateRefreshToken = async (
     const refreshTokenIdentifier: string =
         UUIDVersion4.generateString().toString();
 
-    inquiry.attachRefreshToken(refreshTokenIdentifier);
+    const refreshTokenInstance: IRefreshTokenModel = createUnsavedRefreshToken(
+        inquiry.accountIdentifier,
+        inquiry.inquiryIdentifier,
+        inquiry.domain,
+    );
 
     const token: string = creator.create({
         issuedAt: issueDate,
@@ -67,6 +73,7 @@ export const generateRefreshToken = async (
         },
     });
 
+    await refreshTokenInstance.save();
     await inquiry.save();
 
     return token;
