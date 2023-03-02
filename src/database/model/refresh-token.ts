@@ -46,8 +46,6 @@ const RefreshTokenSchema: Schema<IRefreshTokenModel> = new Schema(
             createdAt: true,
             updatedAt: true,
         },
-        id: false,
-        _id: false,
         methods: {
             attachAuthenticationToken(this: IRefreshTokenModel, authenticationTokenIdentifier: string): IRefreshTokenModel {
 

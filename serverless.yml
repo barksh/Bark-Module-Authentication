@@ -57,6 +57,12 @@ functions:
       - httpApi:
           path: /v1/authentication/refresh
           method: post
+  AuthenticationTouchPost:
+    handler: src/handlers/v1/authentication/post-touch.authenticationPostTouchHandler
+    events:
+      - httpApi:
+          path: /v1/authentication/touch
+          method: post
   SecretPublicKeyPost:
     handler: src/handlers/v1/secret/post-public-key-fetch.secretPostPublicKeyFetchHandler
     events:

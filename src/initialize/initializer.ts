@@ -90,12 +90,12 @@ export class Initializer {
             return;
         }
 
-        logAgent.info("Terminating");
+        logAgent.debug("Terminating");
 
         this._initialized = false;
         await this._connection.close();
 
-        logAgent.info("Terminated");
+        logAgent.debug("Terminated");
     }
 
     private async initialize(): Promise<void> {
@@ -132,11 +132,11 @@ export class Initializer {
 
         try {
 
-            logAgent.info("Initializing");
+            logAgent.debug("Initializing");
 
             const connection: Mongoose.Connection = await connectDatabase(AUTHENTICATION_MONGO_DB);
 
-            logAgent.info("Initialized");
+            logAgent.debug("Initialized");
 
             this._connection = connection;
             this._secretKey = AUTHENTICATION_SECRET_KEY;

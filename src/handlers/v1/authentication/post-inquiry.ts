@@ -7,14 +7,15 @@
 import { createSucceedLambdaResponse } from "@sudoo/lambda";
 import { LambdaVerifier, VerifiedAPIGatewayProxyEvent } from "@sudoo/lambda-verify";
 import { HTTP_RESPONSE_CODE } from "@sudoo/magic";
-import { createCustomPattern, createStrictMapPattern, createStringPattern } from "@sudoo/pattern";
+import { createAnyPattern, createCustomPattern, createListPattern, createStrictMapPattern, createStringPattern } from "@sudoo/pattern";
 import { APIGatewayProxyHandler, APIGatewayProxyResult, Context } from "aws-lambda";
 import { createUnsavedInquiry } from "../../../database/controller/inquiry";
+import { InquiryAction } from "../../../database/interface/inquiry";
 import { IInquiryModel } from "../../../database/model/inquiry";
 import { ERROR_CODE } from "../../../error/code";
 import { panic } from "../../../error/panic";
-import { dnsLookupAuthModuleTxt } from "../../../util/network/dns/txt";
-import { getDomainHostOfURL, validateDomainName } from "../../../util/network/domain";
+import { validateDomainName } from "../../../util/network/domain";
+import { verifyInquiryAction } from "../../../util/verify/inquiry-action";
 import { createErroredLambdaResponse } from "../../common/response";
 import { wrapHandler } from "../../common/setup";
 
@@ -24,7 +25,11 @@ const verifier: LambdaVerifier = LambdaVerifier.create()
             domain: createCustomPattern((domain) => {
                 return validateDomainName(domain);
             }),
-            webHookUrl: createStringPattern({
+            actions: createListPattern(
+                createStrictMapPattern({
+                    type: createStringPattern(),
+                    payload: createAnyPattern(),
+                }), {
                 optional: true,
             }),
             callbackUrl: createStringPattern({
@@ -36,8 +41,7 @@ const verifier: LambdaVerifier = LambdaVerifier.create()
 type Body = {
 
     readonly domain: string;
-    readonly webHookUrl?: string;
-    readonly callbackUrl?: string;
+    readonly actions?: InquiryAction[];
 };
 
 export const authenticationPostInquiryHandler: APIGatewayProxyHandler = wrapHandler(verifier,
@@ -48,24 +52,25 @@ export const authenticationPostInquiryHandler: APIGatewayProxyHandler = wrapHand
 
         const body: Body = event.verifiedBody;
 
-        if (typeof body.callbackUrl === 'string') {
+        if (body.actions && body.actions.length > 0) {
 
-            const availableCallbackUrls: string[] = await dnsLookupAuthModuleTxt(body.domain);
-            const callbackUrlDomain: string = getDomainHostOfURL(body.callbackUrl);
+            for (const action of body.actions) {
 
-            if (!availableCallbackUrls.includes(callbackUrlDomain)) {
-                return createErroredLambdaResponse(
-                    HTTP_RESPONSE_CODE.NOT_FOUND,
-                    panic.code(ERROR_CODE.INVALID_CALLBACK_URL_1, body.callbackUrl),
-                );
+                const verifyResult: boolean = await verifyInquiryAction(body.domain, action);
+                if (!verifyResult) {
+
+                    return createErroredLambdaResponse(
+                        HTTP_RESPONSE_CODE.NOT_FOUND,
+                        panic.code(ERROR_CODE.INVALID_INQUIRY_ACTION_1, JSON.stringify(action)),
+                    );
+                }
             }
         }
 
         const inquiryInstance: IInquiryModel = createUnsavedInquiry(
             body.domain,
             {
-                callbackUrl: body.callbackUrl,
-                webhookUrl: body.webHookUrl,
+                actions: body.actions,
             },
         );
 

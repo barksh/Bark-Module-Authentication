@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
  * @namespace Handlers_Authentication
- * @description Realize
+ * @description Touch
  */
 
 import { createSucceedLambdaResponse } from "@sudoo/lambda";
@@ -9,9 +9,7 @@ import { LambdaVerifier, VerifiedAPIGatewayProxyEvent } from "@sudoo/lambda-veri
 import { HTTP_RESPONSE_CODE } from "@sudoo/magic";
 import { createStrictMapPattern, createStringPattern } from "@sudoo/pattern";
 import { APIGatewayProxyHandler, APIGatewayProxyResult, Context } from "aws-lambda";
-import { AccountEmptySymbol, getAccountByIdentifier } from "../../../database/controller/account";
 import { getValidInquiryByExposureKey, InquiryEmptySymbol } from "../../../database/controller/inquiry";
-import { IAccountModel } from "../../../database/model/account";
 import { IInquiryModel } from "../../../database/model/inquiry";
 import { ERROR_CODE } from "../../../error/code";
 import { panic } from "../../../error/panic";
@@ -23,19 +21,15 @@ const verifier: LambdaVerifier = LambdaVerifier.create()
     .setBodyPattern(
         createStrictMapPattern({
             exposureKey: createStringPattern(),
-            accountIdentifier: createStringPattern(),
-            password: createStringPattern(),
         }),
     );
 
 type Body = {
 
     readonly exposureKey: string;
-    readonly accountIdentifier: string;
-    readonly password: string;
 };
 
-export const authenticationPostRealizeHandler: APIGatewayProxyHandler = wrapHandler(verifier,
+export const authenticationPostTouchHandler: APIGatewayProxyHandler = wrapHandler(verifier,
     async (
         event: VerifiedAPIGatewayProxyEvent,
         _context: Context,
@@ -71,45 +65,9 @@ export const authenticationPostRealizeHandler: APIGatewayProxyHandler = wrapHand
             );
         }
 
-        const account: IAccountModel | typeof AccountEmptySymbol = await getAccountByIdentifier(
-            body.accountIdentifier,
-        );
-
-        if (account === AccountEmptySymbol) {
-
-            logAgent.error('Account not found, identifier:', body.accountIdentifier);
-            return createErroredLambdaResponse(
-                HTTP_RESPONSE_CODE.NOT_FOUND,
-                panic.code(
-                    ERROR_CODE.ACCOUNT_NOT_FOUND_OR_INCORRECT_PASSWORD_1,
-                    body.accountIdentifier,
-                ),
-            );
-        }
-
-        const verifyResult: boolean = account.verifyPassword(body.password);
-
-        if (!verifyResult) {
-
-            logAgent.error('Account password incorrect, identifier:', body.accountIdentifier);
-            return createErroredLambdaResponse(
-                HTTP_RESPONSE_CODE.NOT_FOUND,
-                panic.code(
-                    ERROR_CODE.ACCOUNT_NOT_FOUND_OR_INCORRECT_PASSWORD_1,
-                    body.accountIdentifier,
-                ),
-            );
-        }
-
-        inquiry.realized = true;
-        inquiry.accountIdentifier = account.identifier;
-
-        await inquiry.save();
-
         return createSucceedLambdaResponse({
             exposureKey: inquiry.exposureKey,
-            accountIdentifier: account.identifier,
-            actions: inquiry.actions,
+            domain: inquiry.domain,
         });
     },
 );

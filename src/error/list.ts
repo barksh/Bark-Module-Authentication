@@ -11,7 +11,7 @@ export const ERROR_LIST: Record<ERROR_CODE, string> = {
     [ERROR_CODE.INVALID_IDENTIFIER_1]: 'Invalid Identifier, {}',
     [ERROR_CODE.INVALID_PASSWORD_1]: 'Invalid Password, {}',
     [ERROR_CODE.INVALID_DOMAIN_1]: 'Invalid Domain, {}',
-    [ERROR_CODE.INVALID_CALLBACK_URL_1]: 'Invalid Callback Url, {}',
+    [ERROR_CODE.INVALID_INQUIRY_ACTION_1]: 'Invalid Inquiry Action, {}',
 
     [ERROR_CODE.INVALID_TOKEN]: 'Invalid Token',
 

@@ -6,15 +6,14 @@
 
 import { UUIDVersion4 } from "@sudoo/uuid";
 import { generateRandomKey } from "../../util/random";
-import { IInquiryConfig } from "../interface/inquiry";
+import { IInquiryConfig, InquiryAction } from "../interface/inquiry";
 import { IInquiryModel, InquiryModel } from "../model/inquiry";
 
 export const InquiryEmptySymbol = Symbol('inquiry-empty');
 
 export type CreateInquiryConfig = {
 
-    readonly callbackUrl?: string;
-    readonly webhookUrl?: string;
+    readonly actions?: InquiryAction[];
 };
 
 export const createUnsavedInquiry = (
@@ -36,8 +35,7 @@ export const createUnsavedInquiry = (
         inquiryIdentifier,
         exposureKey,
         hiddenKey,
-        callbackUrl: config.callbackUrl,
-        webhookUrl: config.webhookUrl,
+        actions: config.actions ?? [],
         realized: false,
         domain,
         issuedAt: issueDate,

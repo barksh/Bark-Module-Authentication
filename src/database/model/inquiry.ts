@@ -5,7 +5,19 @@
  */
 
 import { Document, model, Model, Schema } from "mongoose";
-import { IInquiry } from "../interface/inquiry";
+import { IInquiry, InquiryAction } from "../interface/inquiry";
+
+export const InquiryActionSchema: Schema<InquiryAction> = new Schema({
+
+    type: {
+        type: String,
+        required: true,
+    },
+    payload: {
+        type: Schema.Types.Mixed,
+        required: false,
+    },
+}, { _id: false });
 
 const InquirySchema: Schema<IInquiryModel> = new Schema(
     {
@@ -26,13 +38,10 @@ const InquirySchema: Schema<IInquiryModel> = new Schema(
             index: true,
         },
 
-        webhookUrl: {
-            type: String,
-            required: false,
-        },
-        callbackUrl: {
-            type: String,
-            required: false,
+        actions: {
+            type: [InquiryActionSchema],
+            required: true,
+            default: [],
         },
 
         realized: {
@@ -65,8 +74,6 @@ const InquirySchema: Schema<IInquiryModel> = new Schema(
             createdAt: true,
             updatedAt: true,
         },
-        id: false,
-        _id: false,
     },
 );
 
