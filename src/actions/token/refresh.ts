@@ -5,7 +5,6 @@
  */
 
 import { JWTCreator, JWTToken } from "@sudoo/jwt";
-import { UUIDVersion4 } from "@sudoo/uuid";
 import { createUnsavedRefreshToken } from "../../database/controller/refresh-token";
 import { IDecryptedSecretConfig } from "../../database/interface/secret";
 import { IInquiryModel } from "../../database/model/inquiry";
@@ -58,9 +57,6 @@ export const generateRefreshToken = async (
     const expireDate: Date = new Date();
     expireDate.setUTCMonth(expireDate.getUTCMonth() + 1);
 
-    const refreshTokenIdentifier: string =
-        UUIDVersion4.generateString().toString();
-
     const refreshTokenInstance: IRefreshTokenModel = createUnsavedRefreshToken(
         inquiry.accountIdentifier,
         inquiry.inquiryIdentifier,
@@ -70,7 +66,7 @@ export const generateRefreshToken = async (
     const token: string = creator.create({
         issuedAt: issueDate,
         expirationAt: expireDate,
-        identifier: refreshTokenIdentifier,
+        identifier: refreshTokenInstance.refreshTokenIdentifier,
         keyType: 'Bark',
         issuer: Initializer.getInstance().getSelfDomain(),
         audience: inquiry.domain,
