@@ -15,7 +15,7 @@
         "@sudoo/triforce-mongoose": "^1.6.0",
         "@sudoo/uuid": "^1.1.0",
         "@sudoo/verify": "^1.19.0",
-        "connor": "^2.7.0",
+        "connor": "^2.8.0",
         "speakeasy": "^2.0.0"
     },
     "devDependencies": {
