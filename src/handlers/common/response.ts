@@ -9,11 +9,6 @@ import { HTTP_RESPONSE_CODE } from "@sudoo/magic";
 import { APIGatewayProxyResult } from "aws-lambda";
 
 export const responseManager: LambdaResponseManager = LambdaResponseManager.create();
-responseManager.addMiddleware((builder) => {
-    builder.addHeader('Access-Control-Allow-Origin', '*');
-    builder.addHeader('Access-Control-Allow-Credentials', 'true');
-    builder.addHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-});
 
 export const createSucceedLambdaResponse = (body?: LambdaResponseBodyType): APIGatewayProxyResult => {
 
