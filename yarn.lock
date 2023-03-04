@@ -1530,12 +1530,12 @@
   dependencies:
     "@sudoo/magic" "^1.9.0"
 
-"@sudoo/lambda@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@sudoo/lambda/-/lambda-2.0.0.tgz#751ca2e40e968e7db104494a9f44180d3d803a56"
-  integrity sha512-gS4bb7TR4OwTf6OssCAKddnFX7AwOWuMsJlVvYMLj1zvGBvG/x8n7rBsB+c1vlTmoUxJpET6ZBXBAMN1xKvMMQ==
+"@sudoo/lambda@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/lambda/-/lambda-2.1.0.tgz#6d275fba557c270a22cc630a87e0c309b5335430"
+  integrity sha512-uTuUlePNC/q+i++++XF0bO0PiIu0lNSQmU52wggwnbff8/f9Kq5OjlW51EaFaYomQAEX71EE1zhwWdq0h1a9vg==
   dependencies:
-    "@sudoo/magic" "^1.8.0"
+    "@sudoo/magic" "^1.9.0"
 
 "@sudoo/log@^1.8.0":
   version "1.8.0"
@@ -1544,7 +1544,7 @@
   dependencies:
     "@sudoo/magic" "^1.9.0"
 
-"@sudoo/magic@^1.8.0", "@sudoo/magic@^1.9.0":
+"@sudoo/magic@^1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@sudoo/magic/-/magic-1.9.0.tgz#8ba9485604d85c6f88dd891d393e3bb4bc508355"
   integrity sha512-3z6oK1cEh0uXIyQXgiReQB7IdORIfY638MsiwKyUjXPZeetHiLdLQpNEiCbAxTDPb7kaQvRT7xHlMFI7/LwA+g==
