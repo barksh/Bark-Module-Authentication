@@ -4,11 +4,11 @@
  * @description Setup
  */
 
-import { createLambdaResponse } from "@sudoo/lambda";
 import { LambdaVerifier, VerifiedAPIGatewayProxyEvent, VerifiedAPIGatewayProxyHandler } from "@sudoo/lambda-verify";
 import { HTTP_RESPONSE_CODE } from "@sudoo/magic";
 import { APIGatewayProxyHandler, APIGatewayProxyResult, Callback, Context } from "aws-lambda";
 import { Initializer } from "../../initialize/initializer";
+import { responseManager } from "./response";
 
 export const wrapHandler = (
     verifier: LambdaVerifier,
@@ -29,7 +29,10 @@ export const wrapHandler = (
             await Initializer.terminate();
 
             if (typeof result === 'undefined') {
-                return createLambdaResponse(HTTP_RESPONSE_CODE.NO_CONTENT);
+
+                return responseManager
+                    .createBuilder()
+                    .build(HTTP_RESPONSE_CODE.NO_CONTENT);
             }
 
             return result;

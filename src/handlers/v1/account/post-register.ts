@@ -45,6 +45,7 @@ export const accountPostRegisterHandler: APIGatewayProxyHandler = wrapHandler(ve
 
             return createErroredLambdaResponse(
                 HTTP_RESPONSE_CODE.METHOD_NOT_ALLOWED,
+                panic.code(ERROR_CODE.PUBLIC_REGISTER_IS_NOT_ALLOWED),
             );
         }
 

@@ -80,7 +80,7 @@ export const validatePassword = (
     }
 
     if (haveToIncludeSymbol) {
-        if (!/.+[!@#$%^&*()[\]{};:'",./<>?~`-+_=].+/.test(password)) {
+        if (!/^.*[!@#$%^&*()[\]{};:'",./<>?~`\-+_=\\| ].*$/.test(password)) {
             return PASSWORD_VALIDATE_RESPONSE.HAVE_TO_INCLUDE_SYMBOL;
         }
     }
