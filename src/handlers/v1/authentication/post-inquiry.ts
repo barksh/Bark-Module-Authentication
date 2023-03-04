@@ -4,7 +4,6 @@
  * @description Inquiry
  */
 
-import { createSucceedLambdaResponse } from "@sudoo/lambda";
 import { LambdaVerifier, VerifiedAPIGatewayProxyEvent } from "@sudoo/lambda-verify";
 import { HTTP_RESPONSE_CODE } from "@sudoo/magic";
 import { createAnyPattern, createCustomPattern, createListPattern, createStrictMapPattern, createStringPattern } from "@sudoo/pattern";
@@ -16,7 +15,7 @@ import { ERROR_CODE } from "../../../error/code";
 import { panic } from "../../../error/panic";
 import { validateDomainName } from "../../../util/network/domain";
 import { verifyInquiryAction } from "../../../util/verify/inquiry-action";
-import { createErroredLambdaResponse } from "../../common/response";
+import { createErroredLambdaResponse, createSucceedLambdaResponse } from "../../common/response";
 import { wrapHandler } from "../../common/setup";
 
 const verifier: LambdaVerifier = LambdaVerifier.create()

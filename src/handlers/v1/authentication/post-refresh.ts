@@ -4,7 +4,6 @@
  * @description Refresh
  */
 
-import { createSucceedLambdaResponse } from "@sudoo/lambda";
 import { LambdaVerifier, VerifiedAPIGatewayProxyEvent } from "@sudoo/lambda-verify";
 import { HTTP_RESPONSE_CODE } from "@sudoo/magic";
 import { createStrictMapPattern, createStringPattern } from "@sudoo/pattern";
@@ -17,7 +16,7 @@ import { IRefreshTokenModel } from "../../../database/model/refresh-token";
 import { ERROR_CODE } from "../../../error/code";
 import { panic } from "../../../error/panic";
 import { logAgent } from "../../../util/log/log";
-import { createErroredLambdaResponse } from "../../common/response";
+import { createErroredLambdaResponse, createSucceedLambdaResponse } from "../../common/response";
 import { wrapHandler } from "../../common/setup";
 
 const verifier: LambdaVerifier = LambdaVerifier.create()

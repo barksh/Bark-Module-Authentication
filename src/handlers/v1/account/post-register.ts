@@ -4,7 +4,6 @@
  * @description Register
  */
 
-import { createSucceedLambdaResponse } from "@sudoo/lambda";
 import { LambdaVerifier, VerifiedAPIGatewayProxyEvent } from "@sudoo/lambda-verify";
 import { HTTP_RESPONSE_CODE } from "@sudoo/magic";
 import { createStrictMapPattern, createStringPattern } from "@sudoo/pattern";
@@ -16,7 +15,7 @@ import { PreferenceKey } from "../../../database/declare/preference";
 import { IAccountModel } from "../../../database/model/account";
 import { ERROR_CODE } from "../../../error/code";
 import { panic } from "../../../error/panic";
-import { createErroredLambdaResponse } from "../../common/response";
+import { createErroredLambdaResponse, createSucceedLambdaResponse } from "../../common/response";
 import { wrapHandler } from "../../common/setup";
 
 const verifier: LambdaVerifier = LambdaVerifier.create()

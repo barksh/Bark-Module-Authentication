@@ -1530,10 +1530,10 @@
   dependencies:
     "@sudoo/magic" "^1.9.0"
 
-"@sudoo/lambda@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@sudoo/lambda/-/lambda-2.1.0.tgz#6d275fba557c270a22cc630a87e0c309b5335430"
-  integrity sha512-uTuUlePNC/q+i++++XF0bO0PiIu0lNSQmU52wggwnbff8/f9Kq5OjlW51EaFaYomQAEX71EE1zhwWdq0h1a9vg==
+"@sudoo/lambda@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/lambda/-/lambda-3.0.0.tgz#00bd5684e30265608337170dea10a4d3fb35eb0b"
+  integrity sha512-/g0ROAQqzYK9uzVBnfVcS3NP49zUIfhceTk2q1PoXGlcL46jyoSO4W8RkUQD0mqC3ZCDqSm7iPLSxQbeRiyapg==
   dependencies:
     "@sudoo/magic" "^1.9.0"
 
