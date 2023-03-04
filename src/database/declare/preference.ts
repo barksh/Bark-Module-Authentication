@@ -16,7 +16,7 @@ export type PreferenceRecord = {
 
 export const DefaultPreference: PreferenceRecord = {
 
-    [PreferenceKey.ALLOW_PUBLIC_REGISTER]: true,
+    [PreferenceKey.ALLOW_PUBLIC_REGISTER]: false,
 };
 
 export type PreferenceValueType<T extends PreferenceKey> = PreferenceRecord[T];
