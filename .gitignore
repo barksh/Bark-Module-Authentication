@@ -36,4 +36,5 @@ coverage
 
 # Testing
 commands.txt
+commands.sh
 example.ts
