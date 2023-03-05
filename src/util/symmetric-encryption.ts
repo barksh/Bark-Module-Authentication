@@ -11,6 +11,11 @@ export const generateInitVector = (): string => {
     return Crypto.randomBytes(16).toString("hex");
 };
 
+export const generateSecretKey = (): string => {
+
+    return Crypto.randomBytes(32).toString("hex");
+};
+
 export const encryptPrivateKey = (
     privateKey: string,
     securityKey: string,

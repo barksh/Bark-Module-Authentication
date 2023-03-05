@@ -17,3 +17,7 @@ start-database:
 stop-database:
 	@echo "[INFO] Stopping database"
 	@brew services stop mongodb-community@6.0
+
+generate-secret-key:
+	@echo "[INFO] Generating secret key"
+	@./node_modules/.bin/ts-node ./scripts/generate-secret-key.ts
