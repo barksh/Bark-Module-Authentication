@@ -31,9 +31,6 @@ const verifier: LambdaVerifier = LambdaVerifier.create()
                 }), {
                 optional: true,
             }),
-            callbackUrl: createStringPattern({
-                optional: true,
-            }),
         }),
     );
 
