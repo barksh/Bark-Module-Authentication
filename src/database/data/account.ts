@@ -40,7 +40,6 @@ export const validateIdentifier = (
     return IDENTIFIER_VALIDATE_RESPONSE.OK;
 };
 
-
 export enum PASSWORD_VALIDATE_RESPONSE {
 
     TOO_SHORT = "TOO_SHORT",
