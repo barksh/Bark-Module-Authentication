@@ -23,6 +23,16 @@ const AccountSchema: Schema<IAccountModel> = new Schema(
             required: true,
             index: true,
         },
+        automation: {
+            type: Boolean,
+            required: true,
+            default: false,
+        },
+        administrator: {
+            type: Boolean,
+            required: true,
+            default: false,
+        },
         attemptPoints: {
             type: Number,
             required: true,

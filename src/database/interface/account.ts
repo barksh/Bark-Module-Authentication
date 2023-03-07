@@ -8,6 +8,9 @@ export interface IAccountConfig {
 
     readonly identifier: string;
 
+    readonly automation: boolean;
+    readonly administrator: boolean;
+
     password: string;
     mint: string;
     salt: string;
