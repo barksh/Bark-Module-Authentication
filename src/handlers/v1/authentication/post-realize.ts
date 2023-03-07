@@ -100,6 +100,18 @@ export const authenticationPostRealizeHandler: APIGatewayProxyHandler = wrapHand
             );
         }
 
+        if (account.automation) {
+
+            logAgent.error('Account is automation during realize, identifier:', body.accountIdentifier);
+            return createErroredLambdaResponse(
+                HTTP_RESPONSE_CODE.UNAUTHORIZED,
+                panic.code(
+                    ERROR_CODE.CANNOT_REALIZE_INQUIRY_WITH_AUTOMATION_ACCOUNT_1,
+                    body.accountIdentifier,
+                ),
+            );
+        }
+
         inquiry.realized = true;
         inquiry.accountIdentifier = account.identifier;
 

@@ -8,10 +8,12 @@ import { LambdaVerifier, VerifiedAPIGatewayProxyEvent } from "@sudoo/lambda-veri
 import { HTTP_RESPONSE_CODE } from "@sudoo/magic";
 import { createStrictMapPattern, createStringPattern } from "@sudoo/pattern";
 import { APIGatewayProxyHandler, APIGatewayProxyResult, Context } from "aws-lambda";
-import { generateAuthenticationToken } from "../../../actions/token/authentication";
+import { generateUserAuthenticationTokenByRefreshToken } from "../../../actions/token/authentication-refresh-token";
 import { RefreshAuthToken } from "../../../actions/token/refresh";
 import { verifyRefreshToken } from "../../../actions/verify/refresh";
+import { AccountEmptySymbol, getAccountByIdentifier } from "../../../database/controller/account";
 import { getRefreshTokenByIdentifier, RefreshTokenEmptySymbol } from "../../../database/controller/refresh-token";
+import { IAccountModel } from "../../../database/model/account";
 import { IRefreshTokenModel } from "../../../database/model/refresh-token";
 import { ERROR_CODE } from "../../../error/code";
 import { panic } from "../../../error/panic";
@@ -72,7 +74,36 @@ export const authenticationPostRefreshHandler: APIGatewayProxyHandler = wrapHand
             );
         }
 
-        const authenticationToken: string = await generateAuthenticationToken({
+        const account: IAccountModel | typeof AccountEmptySymbol = await getAccountByIdentifier(
+            refreshToken.body.identifier,
+        );
+
+        if (account === AccountEmptySymbol) {
+
+            logAgent.error('Account not found:', refreshToken.body.identifier);
+            return createErroredLambdaResponse(
+                HTTP_RESPONSE_CODE.NOT_FOUND,
+                panic.code(
+                    ERROR_CODE.ACCOUNT_NOT_FOUND_1,
+                    refreshToken.body.identifier,
+                ),
+            );
+        }
+
+        if (account.automation) {
+
+            logAgent.error('Account is automation when refresh token:', refreshToken.body.identifier);
+            return createErroredLambdaResponse(
+                HTTP_RESPONSE_CODE.NOT_FOUND,
+                panic.code(
+                    ERROR_CODE.CANNOT_REFRESH_TOKEN_WITH_AUTOMATION_ACCOUNT_1,
+                    refreshToken.body.identifier,
+                ),
+            );
+        }
+
+        const authenticationToken: string = await generateUserAuthenticationTokenByRefreshToken({
+            account,
             refreshToken: refreshTokenInstance,
         });
 

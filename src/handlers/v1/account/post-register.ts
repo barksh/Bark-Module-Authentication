@@ -80,6 +80,10 @@ export const accountPostRegisterHandler: APIGatewayProxyHandler = wrapHandler(ve
         const account: IAccountModel = createUnsavedAccount(
             body.identifier,
             body.password,
+            {
+                automation: false,
+                administrator: false,
+            },
         );
 
         await account.save();
