@@ -992,6 +992,15 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
+"@barksh/dns-resolver@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@barksh/dns-resolver/-/dns-resolver-1.0.0.tgz#246d56ada5b3180f16223b3fa8662ca8472e37e1"
+  integrity sha512-RHb2Cze+tCIxgAHap/vMhRkYN8AXEUqD80CxA3WHMfFszAfO0Yev6/zQXEzEbsolfSo8BoJxFSSLcJhhqkuDrQ==
+  dependencies:
+    "@sudoo/magic" "^1.9.0"
+    "@sudoo/url" "^1.6.0"
+    connor "^2.8.0"
+
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@cspotcode/source-map-support/-/source-map-support-0.8.1.tgz#00629c35a688e05a88b1cda684fb9d5e73f000a1"
@@ -1506,6 +1515,11 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.6.0.tgz#3c7c9c46e678feefe7a2e5bb609d3dbd665ffb3f"
   integrity sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==
 
+"@sudoo/buffer@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/buffer/-/buffer-1.5.0.tgz#f245059617159494b783a4421bae2365013dd65d"
+  integrity sha512-fpOl5FGF55S5fdlks0IEUROnAtrdHGKw5k9g7G1utwU0U011lGkOgtlJVYheYuC+UtYZFo3rwkPuUSWdwn56JQ==
+
 "@sudoo/eslint-config-react-a11y@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@sudoo/eslint-config-react-a11y/-/eslint-config-react-a11y-1.0.0.tgz#6782f38a9f7a31a0a3bd189ded2ebb3eef7ad70a"
@@ -1642,6 +1656,13 @@
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@sudoo/tsconfig/-/tsconfig-1.6.0.tgz#4c03395d7ddb10f3666d9437820f1d92c6f06895"
   integrity sha512-o9mL3Bxt5C3PXa5mR+E4aejg+2OK+nU9sekFRPB7MFk5NNX1tgsK8DGD00OOHxDt7pFdO3EkOdBLzdNZbjSzoQ==
+
+"@sudoo/url@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/url/-/url-1.6.0.tgz#b5823e7286aabc271a2e6cdeab5b8d858def2c42"
+  integrity sha512-mtdIb3xHO0Ga01hnuemN6ouAbbHguLjJALnMRcmYWmlp4lq/02KAVRijX0kUUut1VGPtsZocS8VVIACLdQhoJw==
+  dependencies:
+    "@sudoo/buffer" "^1.5.0"
 
 "@sudoo/uuid@^1.1.0":
   version "1.1.0"
