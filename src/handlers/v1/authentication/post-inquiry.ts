@@ -13,7 +13,7 @@ import { InquiryAction } from "../../../database/interface/inquiry";
 import { IInquiryModel } from "../../../database/model/inquiry";
 import { ERROR_CODE } from "../../../error/code";
 import { panic } from "../../../error/panic";
-import { validateDomainName } from "../../../util/network/domain";
+import { validateDomainName } from "../../../util/domain";
 import { verifyInquiryAction } from "../../../util/verify/inquiry-action";
 import { createErroredLambdaResponse, createSucceedLambdaResponse } from "../../common/response";
 import { wrapHandler } from "../../common/setup";
