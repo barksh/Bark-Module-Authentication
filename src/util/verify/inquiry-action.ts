@@ -5,9 +5,9 @@
  */
 
 import { InquiryAction, InquiryActionType } from "../../database/interface/inquiry";
+import { dnsResolver } from "../dns";
+import { getDomainHostOfURL } from "../domain";
 import { logAgent } from "../log/log";
-import { dnsLookupAuthModuleTxt } from "../network/dns/txt";
-import { getDomainHostOfURL } from "../network/domain";
 
 const availableCallbackCache: Map<string, string[]> = new Map();
 
@@ -17,7 +17,7 @@ const getAvailableCallbackUrls = async (domain: string): Promise<string[]> => {
         return availableCallbackCache.get(domain) as string[];
     }
 
-    const availableCallbackUrls: string[] = await dnsLookupAuthModuleTxt(domain);
+    const availableCallbackUrls: string[] = await dnsResolver.V1.resolveAllowedCallback(domain);
     availableCallbackCache.set(domain, availableCallbackUrls);
 
     return availableCallbackUrls;

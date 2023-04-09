@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Util_Network
+ * @namespace Util
  * @description Domain
  */
 

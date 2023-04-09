@@ -1,0 +1,21 @@
+{
+  "name": "@barksh-module/authentication",
+  "main": "index.js",
+  "dependencies": {
+    "@barksh/dns-resolver": "^1.0.0",
+    "@sudoo/jwt": "^3.5.0",
+    "@sudoo/lambda": "^3.1.0",
+    "@sudoo/lambda-verify": "^2.0.0",
+    "@sudoo/log": "^1.8.0",
+    "@sudoo/magic": "^1.9.0",
+    "@sudoo/password": "^1.2.0",
+    "@sudoo/pattern": "^1.10.0",
+    "@sudoo/random": "^2.2.0",
+    "@sudoo/token": "^1.6.1",
+    "@sudoo/triforce-mongoose": "^1.6.0",
+    "@sudoo/uuid": "^1.1.0",
+    "@sudoo/verify": "^1.19.0",
+    "connor": "^2.8.0",
+    "speakeasy": "^2.0.0"
+  }
+}
