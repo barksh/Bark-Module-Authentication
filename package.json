@@ -2,7 +2,7 @@
     "name": "@barksh-module/authentication",
     "private": true,
     "dependencies": {
-        "@barksh/dns-resolver": "^1.0.0",
+        "@barksh/dns-resolver": "^1.0.1",
         "@sudoo/jwt": "^3.5.0",
         "@sudoo/lambda": "^3.1.0",
         "@sudoo/lambda-verify": "^2.0.0",
