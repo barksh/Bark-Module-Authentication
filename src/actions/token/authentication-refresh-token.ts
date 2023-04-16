@@ -62,7 +62,6 @@ export const generateUserAuthenticationTokenByRefreshToken = async (
             identifier: refreshToken.accountIdentifier,
             automation: config.account.automation,
             administrator: config.account.administrator,
-            refreshTokenIdentifier: refreshToken.refreshTokenIdentifier,
         },
     });
 
