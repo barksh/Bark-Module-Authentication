@@ -16,6 +16,7 @@ dist-ssr
 # Build
 build
 .build
+app
 
 # Editor directories and files
 .DS_Store
