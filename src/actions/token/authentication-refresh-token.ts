@@ -7,8 +7,8 @@
 import { JWTCreator } from "@sudoo/jwt";
 import { UUIDVersion4 } from "@sudoo/uuid";
 import { IAccount } from "../../database/interface/account";
-import { IRefreshToken } from "../../database/interface/refresh-token";
 import { IDecryptedSecretConfig } from "../../database/interface/secret";
+import { IRefreshTokenModel } from "../../database/model/refresh-token";
 import { ERROR_CODE } from "../../error/code";
 import { panic } from "../../error/panic";
 import { Initializer } from "../../initialize/initializer";
@@ -18,7 +18,7 @@ import { AuthenticationTokenBody, AuthenticationTokenHeader } from "./authentica
 export type GenerateUserAuthenticationTokenConfig = {
 
     readonly account: IAccount;
-    readonly refreshToken: IRefreshToken;
+    readonly refreshToken: IRefreshTokenModel;
 };
 
 export const generateUserAuthenticationTokenByRefreshToken = async (
@@ -32,7 +32,7 @@ export const generateUserAuthenticationTokenByRefreshToken = async (
         );
     }
 
-    const refreshToken: IRefreshToken = config.refreshToken;
+    const refreshToken: IRefreshTokenModel = config.refreshToken;
 
     const secret: IDecryptedSecretConfig = await getOrCreateDecryptedSecretByDomain(
         refreshToken.domain,
@@ -64,6 +64,9 @@ export const generateUserAuthenticationTokenByRefreshToken = async (
             administrator: config.account.administrator,
         },
     });
+
+    refreshToken.attachAuthenticationToken(authenticationTokenIdentifier);
+    await refreshToken.save();
 
     return token;
 };
