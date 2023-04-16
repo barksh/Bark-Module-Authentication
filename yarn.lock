@@ -992,13 +992,13 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@barksh/dns-resolver@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@barksh/dns-resolver/-/dns-resolver-1.0.0.tgz#246d56ada5b3180f16223b3fa8662ca8472e37e1"
-  integrity sha512-RHb2Cze+tCIxgAHap/vMhRkYN8AXEUqD80CxA3WHMfFszAfO0Yev6/zQXEzEbsolfSo8BoJxFSSLcJhhqkuDrQ==
+"@barksh/dns-resolver@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@barksh/dns-resolver/-/dns-resolver-1.0.1.tgz#0b4e6e1baf22567fb872f9394cef675c7c2f675f"
+  integrity sha512-easEPeQ2mQ7qbT5DVY770Nj7JKnrgA5p58z0RHkEeybDVCnstBxi0coUK8/3lFlr5eEdICp8c+JyY0e1XRxh7A==
   dependencies:
     "@sudoo/magic" "^1.9.0"
-    "@sudoo/url" "^1.6.0"
+    "@sudoo/url" "^1.6.1"
     connor "^2.8.0"
 
 "@cspotcode/source-map-support@^0.8.0":
@@ -1657,10 +1657,10 @@
   resolved "https://registry.yarnpkg.com/@sudoo/tsconfig/-/tsconfig-1.6.0.tgz#4c03395d7ddb10f3666d9437820f1d92c6f06895"
   integrity sha512-o9mL3Bxt5C3PXa5mR+E4aejg+2OK+nU9sekFRPB7MFk5NNX1tgsK8DGD00OOHxDt7pFdO3EkOdBLzdNZbjSzoQ==
 
-"@sudoo/url@^1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@sudoo/url/-/url-1.6.0.tgz#b5823e7286aabc271a2e6cdeab5b8d858def2c42"
-  integrity sha512-mtdIb3xHO0Ga01hnuemN6ouAbbHguLjJALnMRcmYWmlp4lq/02KAVRijX0kUUut1VGPtsZocS8VVIACLdQhoJw==
+"@sudoo/url@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@sudoo/url/-/url-1.6.1.tgz#f8886aca8a2130be94e4b89e20eaf534789af038"
+  integrity sha512-MFyw/rgCXXexKyGfnZcC4oM4U/F4yt7bfSRxIvPzzFsVRg3xevnGO6d+RRzd8mO/vk/PD0wXE7BNw1eWxUJ/+Q==
   dependencies:
     "@sudoo/buffer" "^1.5.0"
 
