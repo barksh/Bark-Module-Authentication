@@ -5,7 +5,7 @@
         "@barksh/dns-resolver": "^1.0.1",
         "@sudoo/jwt": "^3.5.0",
         "@sudoo/lambda": "^3.1.0",
-        "@sudoo/lambda-verify": "^2.0.0",
+        "@sudoo/lambda-verify": "^2.1.0",
         "@sudoo/log": "^1.8.0",
         "@sudoo/magic": "^1.9.0",
         "@sudoo/password": "^1.2.0",
