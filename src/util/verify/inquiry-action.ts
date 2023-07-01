@@ -30,6 +30,11 @@ export const verifyInquiryAction = async <T extends InquiryActionType>(domain: s
         case InquiryActionType.CALLBACK: {
 
             const fixedAction: InquiryAction<InquiryActionType.CALLBACK> = action as InquiryAction<InquiryActionType.CALLBACK>;
+            logAgent.info('Bark callback url', fixedAction.payload);
+
+            if (fixedAction.payload.startsWith('bark-callback://')) {
+                return true;
+            }
 
             const availableCallbackUrls: string[] = await getAvailableCallbackUrls(domain);
 
