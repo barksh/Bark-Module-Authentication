@@ -5,7 +5,7 @@
         "@barksh/dns-resolver": "^1.0.1",
         "@sudoo/jwt": "^3.5.0",
         "@sudoo/lambda": "^3.1.0",
-        "@sudoo/lambda-verify": "^2.0.0",
+        "@sudoo/lambda-verify": "^2.1.0",
         "@sudoo/log": "^1.8.0",
         "@sudoo/magic": "^1.9.0",
         "@sudoo/password": "^1.2.0",
@@ -15,18 +15,18 @@
         "@sudoo/triforce-mongoose": "^1.6.0",
         "@sudoo/uuid": "^1.1.0",
         "@sudoo/verify": "^1.19.0",
-        "connor": "^2.8.0",
+        "connor": "^2.9.0",
         "speakeasy": "^2.0.0"
     },
     "devDependencies": {
         "@sudoo/triforce": "^3.11.0",
         "@sudoo/triforce-mongoose-dev": "^1.6.0",
-        "@types/aws-lambda": "^8.10.115",
+        "@types/aws-lambda": "^8.10.119",
         "@types/speakeasy": "^2.0.7",
         "aws-lambda": "^1.0.7",
-        "serverless": "^3.32.1",
+        "serverless": "^3.33.0",
         "serverless-offline": "^12.0.4",
-        "serverless-plugin-typescript": "^2.1.4",
+        "serverless-plugin-typescript": "^2.1.5",
         "ts-node": "^10.9.1"
     },
     "nyc": {
