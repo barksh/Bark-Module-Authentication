@@ -1916,6 +1916,13 @@
     "@typescript-eslint/types" "5.55.0"
     eslint-visitor-keys "^3.3.0"
 
+abort-controller@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/abort-controller/-/abort-controller-3.0.0.tgz#eaf54d53b62bae4138e809ca225c8439a6efb392"
+  integrity sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==
+  dependencies:
+    event-target-shim "^5.0.0"
+
 acorn-jsx@^5.3.2:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"
@@ -2193,26 +2200,10 @@ aws-lambda@^1.0.7:
     js-yaml "^3.14.1"
     watchpack "^2.0.0-beta.10"
 
-aws-sdk@^2.1404.0:
+aws-sdk@^2.1404.0, aws-sdk@^2.814.0:
   version "2.1409.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1409.0.tgz#bae5f1f4e4825e1e3319abd4abb5571201128a60"
   integrity sha512-4tg4lkvqRQs/39Z/wp+WBcNwDv17zwErlwotIxkHg7kCybVD78mC0sTrjcBbRK01kOsgiS/NCImIWj6C8KsMzw==
-  dependencies:
-    buffer "4.9.2"
-    events "1.1.1"
-    ieee754 "1.1.13"
-    jmespath "0.16.0"
-    querystring "0.2.0"
-    sax "1.2.1"
-    url "0.10.3"
-    util "^0.12.4"
-    uuid "8.0.0"
-    xml2js "0.5.0"
-
-aws-sdk@^2.814.0:
-  version "2.1389.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1389.0.tgz#dffc00454ed56974929db201632f826632693219"
-  integrity sha512-H+Q1oZ4bWi5xOp2EabZpbHcQjz55luvn6cUCHtgmMFJPQQGEWlJ9siWTi+6C+/0VyrGambup7aXILhF6prU+Zg==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -3396,6 +3387,11 @@ event-emitter@^0.3.5:
   dependencies:
     d "1"
     es5-ext "~0.10.14"
+
+event-target-shim@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
+  integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
 
 events@1.1.1:
   version "1.1.1"
@@ -5884,14 +5880,7 @@ semver@^6.0.0, semver@^6.3.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
-semver@^7.3.5, semver@^7.3.7, semver@^7.3.8:
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.1.tgz#c90c4d631cf74720e46b21c1d37ea07edfab91ec"
-  integrity sha512-Wvss5ivl8TMRZXXESstBA4uR5iXgEN/VC5/sOcuXdVLzcdkz4HWetIoRfG5gb5X+ij/G9rw9YoGn3QoQ8OCSpw==
-  dependencies:
-    lru-cache "^6.0.0"
-
-semver@^7.5.3:
+semver@^7.3.5, semver@^7.3.7, semver@^7.3.8, semver@^7.5.3:
   version "7.5.3"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.3.tgz#161ce8c2c6b4b3bdca6caadc9fa3317a4c4fe88e"
   integrity sha512-QBlUtyVk/5EeHbi7X0fw6liDZc7BBmEaSYn01fMU1OUYbf6GPsbTtd8WmnqbI20SeycoHSeiybkE/q1Q+qlThQ==
@@ -5946,14 +5935,15 @@ serverless-plugin-typescript@^2.1.5:
     globby "^10.0.2"
     lodash "^4.17.21"
 
-serverless@^3.33.0:
-  version "3.33.0"
-  resolved "https://registry.yarnpkg.com/serverless/-/serverless-3.33.0.tgz#7d4aacfacb5f122a24e8c6a8d2972cce99746c0c"
-  integrity sha512-qmG0RMelsWmnS5Smxoy0CbjpecgnJlM89wzSIgJqfkGlmOo2nJdd8y0/E6KlaTsaozlPKkjUBDzis2nF8VNO2g==
+serverless@^3.34.0:
+  version "3.34.0"
+  resolved "https://registry.yarnpkg.com/serverless/-/serverless-3.34.0.tgz#d60d7c6fc4c6e8634106f22d1e7d52f2a4d4d46c"
+  integrity sha512-xtWAg78NGgboolP/GArdorx+UHyESJgriGSE6Qpgg9trTYsKMyd8YKaMIM3sidy89e45XZopRSpvnPYoQCJOBA==
   dependencies:
     "@serverless/dashboard-plugin" "^6.2.3"
     "@serverless/platform-client" "^4.3.2"
     "@serverless/utils" "^6.11.1"
+    abort-controller "^3.0.0"
     ajv "^8.12.0"
     ajv-formats "^2.1.1"
     archiver "^5.3.1"
@@ -5976,7 +5966,6 @@ serverless@^3.33.0:
     fs-extra "^10.1.0"
     get-stdin "^8.0.0"
     globby "^11.1.0"
-    got "^11.8.6"
     graceful-fs "^4.2.11"
     https-proxy-agent "^5.0.1"
     is-docker "^2.2.1"
