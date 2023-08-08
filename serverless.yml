@@ -65,6 +65,12 @@ functions:
       - httpApi:
           path: /v1/authentication/touch
           method: post
+  MetaHealthGet:
+    handler: src/handlers/v1/meta/get-health.metaGetHealthHandler
+    events:
+      - httpApi:
+          path: /v1/meta/health
+          method: get
   SecretPublicKeyPost:
     handler: src/handlers/v1/secret/post-public-key-fetch.secretPostPublicKeyFetchHandler
     events:
