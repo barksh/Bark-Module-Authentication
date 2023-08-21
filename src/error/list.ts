@@ -19,6 +19,7 @@ export const ERROR_LIST: Record<ERROR_CODE, string> = {
 
     [ERROR_CODE.CANNOT_REALIZE_INQUIRY_WITH_AUTOMATION_ACCOUNT_1]: 'Cannot Realize Inquiry With Automation Account, {}',
     [ERROR_CODE.CANNOT_REFRESH_TOKEN_WITH_AUTOMATION_ACCOUNT_1]: 'Cannot Refresh Token With Automation Account, {}',
+    [ERROR_CODE.CANNOT_ACQUIRE_TOKEN_WITH_NOT_AUTOMATION_ACCOUNT_1]: 'Cannot Acquire Token With Not Automation Account, {}',
 
     [ERROR_CODE.ACCOUNT_NOT_FOUND_OR_INCORRECT_PASSWORD_1]: 'Account Not Found Or Incorrect Password, {}',
     [ERROR_CODE.ACCOUNT_NOT_FOUND_1]: 'Account Not Found, {}',
