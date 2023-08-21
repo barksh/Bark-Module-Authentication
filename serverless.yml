@@ -35,6 +35,12 @@ functions:
       - httpApi:
           path: /v1/account/register
           method: post
+  AuthenticationAcquirePost:
+    handler: src/handlers/v1/authentication/post-acquire.authenticationPostAcquireHandler
+    events:
+      - httpApi:
+          path: /v1/authentication/acquire
+          method: post
   AuthenticationInquiryPost:
     handler: src/handlers/v1/authentication/post-inquiry.authenticationPostInquiryHandler
     events:
