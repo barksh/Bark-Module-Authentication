@@ -6,7 +6,7 @@
 
 import { LambdaVerifier, VerifiedAPIGatewayProxyEvent } from "@sudoo/lambda-verify";
 import { HTTP_RESPONSE_CODE } from "@sudoo/magic";
-import { createStrictMapPattern, createStringPattern } from "@sudoo/pattern";
+import { createBooleanPattern, createStrictMapPattern, createStringPattern } from "@sudoo/pattern";
 import { APIGatewayProxyHandler, APIGatewayProxyResult, Context } from "aws-lambda";
 import { AccountEmptySymbol, createUnsavedAccount, getAccountByIdentifier } from "../../../database/controller/account";
 import { getOrDefaultPreferenceByKey } from "../../../database/controller/preference";
@@ -23,12 +23,15 @@ const verifier: LambdaVerifier = LambdaVerifier.create()
         createStrictMapPattern({
             identifier: createStringPattern(),
             password: createStringPattern(),
+            isAutomation: createBooleanPattern(),
         }),
     );
 
 type Body = {
+
     readonly identifier: string;
     readonly password: string;
+    readonly isAutomation: boolean;
 };
 
 export const accountPostRegisterHandler: APIGatewayProxyHandler = wrapHandler(verifier,
@@ -81,7 +84,7 @@ export const accountPostRegisterHandler: APIGatewayProxyHandler = wrapHandler(ve
             body.identifier,
             body.password,
             {
-                automation: false,
+                automation: body.isAutomation,
                 administrator: false,
             },
         );
