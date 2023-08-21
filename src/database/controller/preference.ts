@@ -24,10 +24,17 @@ export const createUnsavedPreference = <T extends PreferenceKey>(
 
 export const getOrDefaultPreferenceByKey = async <T extends PreferenceKey>(key: T): Promise<PreferenceValueType<T>> => {
 
-    const preference: PreferenceValueType<T> | typeof PreferenceEmptySymbol = await getPreferenceByKey(key);
+    const preference: PreferenceValueType<T> | typeof PreferenceEmptySymbol =
+        await getPreferenceByKey(key);
 
     if (preference === PreferenceEmptySymbol) {
-        return DefaultPreference[key];
+
+        const defaultValue = DefaultPreference[key];
+        const defaultPreference: IPreferenceModel = createUnsavedPreference(key, defaultValue);
+
+        await defaultPreference.save();
+
+        return defaultValue;
     }
 
     return preference;
