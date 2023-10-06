@@ -81,6 +81,52 @@
     "@aws-sdk/types" "3.272.0"
     tslib "^2.3.1"
 
+"@aws-sdk/client-cloudformation@^3.410.0":
+  version "3.425.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-cloudformation/-/client-cloudformation-3.425.0.tgz#de1a3623036b0533769d1bda11be3c74232948e4"
+  integrity sha512-EgEpa8Z+ylOrlUR3qT3fOd3Ig3L+zj9a+Ch5TYy1Y6Fi+Ef+NBaK7HAABrZ2QFNtcyxIijnMTL3JwZa24/xdZA==
+  dependencies:
+    "@aws-crypto/sha256-browser" "3.0.0"
+    "@aws-crypto/sha256-js" "3.0.0"
+    "@aws-sdk/client-sts" "3.425.0"
+    "@aws-sdk/credential-provider-node" "3.425.0"
+    "@aws-sdk/middleware-host-header" "3.425.0"
+    "@aws-sdk/middleware-logger" "3.425.0"
+    "@aws-sdk/middleware-recursion-detection" "3.425.0"
+    "@aws-sdk/middleware-signing" "3.425.0"
+    "@aws-sdk/middleware-user-agent" "3.425.0"
+    "@aws-sdk/region-config-resolver" "3.425.0"
+    "@aws-sdk/types" "3.425.0"
+    "@aws-sdk/util-endpoints" "3.425.0"
+    "@aws-sdk/util-user-agent-browser" "3.425.0"
+    "@aws-sdk/util-user-agent-node" "3.425.0"
+    "@smithy/config-resolver" "^2.0.11"
+    "@smithy/fetch-http-handler" "^2.2.1"
+    "@smithy/hash-node" "^2.0.10"
+    "@smithy/invalid-dependency" "^2.0.10"
+    "@smithy/middleware-content-length" "^2.0.12"
+    "@smithy/middleware-endpoint" "^2.0.10"
+    "@smithy/middleware-retry" "^2.0.13"
+    "@smithy/middleware-serde" "^2.0.10"
+    "@smithy/middleware-stack" "^2.0.4"
+    "@smithy/node-config-provider" "^2.0.13"
+    "@smithy/node-http-handler" "^2.1.6"
+    "@smithy/protocol-http" "^3.0.6"
+    "@smithy/smithy-client" "^2.1.9"
+    "@smithy/types" "^2.3.4"
+    "@smithy/url-parser" "^2.0.10"
+    "@smithy/util-base64" "^2.0.0"
+    "@smithy/util-body-length-browser" "^2.0.0"
+    "@smithy/util-body-length-node" "^2.1.0"
+    "@smithy/util-defaults-mode-browser" "^2.0.13"
+    "@smithy/util-defaults-mode-node" "^2.0.15"
+    "@smithy/util-retry" "^2.0.3"
+    "@smithy/util-utf8" "^2.0.0"
+    "@smithy/util-waiter" "^2.0.10"
+    fast-xml-parser "4.2.5"
+    tslib "^2.5.0"
+    uuid "^8.3.2"
+
 "@aws-sdk/client-cognito-identity@3.279.0":
   version "3.279.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-cognito-identity/-/client-cognito-identity-3.279.0.tgz#c7fc1e920d8466e65934f2d272396185e2ab4d1d"
@@ -328,7 +374,7 @@
     fast-xml-parser "4.1.2"
     tslib "^2.3.1"
 
-"@aws-sdk/client-sts@3.425.0":
+"@aws-sdk/client-sts@3.425.0", "@aws-sdk/client-sts@^3.410.0":
   version "3.425.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-sts/-/client-sts-3.425.0.tgz#51b04533a787a69f70fc63daba4769577491be80"
   integrity sha512-+UeyIdXExYkyxhmQxiBPW5er2e9OaESdUtVvnaUEoOSYHObwq5ywpM75sFihnzEwwAApxua/y2nQstSIf30aCA==
@@ -1734,15 +1780,17 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@serverless/dashboard-plugin@^6.2.3":
-  version "6.2.3"
-  resolved "https://registry.yarnpkg.com/@serverless/dashboard-plugin/-/dashboard-plugin-6.2.3.tgz#039a94e8319dee85e78eb6adae051fb8505a3789"
-  integrity sha512-iTZhpZbiVl6G2AyfgoqxemqqpG4pUceWys3GsyZtjimnfnGd2UFBOMVUMTavLhYia7lQc4kQVuXQ+afLlkg+pQ==
+"@serverless/dashboard-plugin@^7.0.2":
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/@serverless/dashboard-plugin/-/dashboard-plugin-7.0.5.tgz#5ca8fdbc5171668d5f8dd1c136c4bc0d23fe41f9"
+  integrity sha512-OpZJpldLCJmQ/JCvuSCbWaNd6CprQ8yDi9lqrpP3WeR61jOGG8JFxmMs6hjpDd9bKyUMnQ9qAJ+C+QbAxdUosw==
   dependencies:
+    "@aws-sdk/client-cloudformation" "^3.410.0"
+    "@aws-sdk/client-sts" "^3.410.0"
     "@serverless/event-mocks" "^1.1.1"
-    "@serverless/platform-client" "^4.3.2"
-    "@serverless/utils" "^6.8.2"
-    child-process-ext "^2.1.1"
+    "@serverless/platform-client" "^4.4.0"
+    "@serverless/utils" "^6.14.0"
+    child-process-ext "^3.0.1"
     chokidar "^3.5.3"
     flat "^5.0.2"
     fs-extra "^9.1.0"
@@ -1756,6 +1804,7 @@
     open "^7.4.2"
     semver "^7.3.8"
     simple-git "^3.16.0"
+    timers-ext "^0.1.7"
     type "^2.7.2"
     uuid "^8.3.2"
     yamljs "^0.3.0"
@@ -1768,10 +1817,10 @@
     "@types/lodash" "^4.14.123"
     lodash "^4.17.11"
 
-"@serverless/platform-client@^4.3.2":
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/@serverless/platform-client/-/platform-client-4.3.2.tgz#10cd3ad8cf452a33528cfb14bbb6003d30a74805"
-  integrity sha512-DAa5Z0JAZc6UfrTZLYwqoZxgAponZpFwaqd7WzzMA+loMCkYWyJNwxrAmV6cr2UUJpkko4toPZuJ3vM9Ie+NDA==
+"@serverless/platform-client@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@serverless/platform-client/-/platform-client-4.4.0.tgz#8a1c76ceface3eef6792a35c3e5b295f68beb967"
+  integrity sha512-urL7SNefRqC2EOFDcpvm8fyn/06B5yXWneKpyGw7ylGt0Qr9JHZCB9TiUeTkIpPUNz0jTvKUaJ2+M/JNEiaVIA==
   dependencies:
     adm-zip "^0.5.5"
     archiver "^5.3.0"
@@ -1789,7 +1838,7 @@
     traverse "^0.6.6"
     ws "^7.5.3"
 
-"@serverless/utils@^6.11.1", "@serverless/utils@^6.15.0", "@serverless/utils@^6.8.2":
+"@serverless/utils@^6.13.1", "@serverless/utils@^6.14.0", "@serverless/utils@^6.15.0":
   version "6.15.0"
   resolved "https://registry.yarnpkg.com/@serverless/utils/-/utils-6.15.0.tgz#499255c517581b1edd8c2bfedbcf61cc7aaa7539"
   integrity sha512-7eDbqKv/OBd11jjdZjUwFGN8sHWkeUqLeHXHQxQ1azja2IM7WIH+z/aLgzR6LhB3/MINNwtjesDpjGqTMj2JKQ==
@@ -3226,6 +3275,17 @@ child-process-ext@^2.1.1:
     es5-ext "^0.10.53"
     log "^6.0.0"
     split2 "^3.1.1"
+    stream-promise "^3.2.0"
+
+child-process-ext@^3.0.1:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/child-process-ext/-/child-process-ext-3.0.2.tgz#701b77a3a27b8eefdf7264d8350b29c3a9cbba32"
+  integrity sha512-oBePsLbQpTJFxzwyCvs9yWWF0OEM6vGGepHwt1stqmX7QQqOuDc8j2ywdvAs9Tvi44TT7d9ackqhR4Q10l1u8w==
+  dependencies:
+    cross-spawn "^7.0.3"
+    es5-ext "^0.10.62"
+    log "^6.3.1"
+    split2 "^3.2.2"
     stream-promise "^3.2.0"
 
 chokidar@3.5.3, chokidar@^3.5.3:
@@ -6644,14 +6704,14 @@ serverless-plugin-typescript@^2.1.5:
     globby "^10.0.2"
     lodash "^4.17.21"
 
-serverless@^3.34.0:
-  version "3.34.0"
-  resolved "https://registry.yarnpkg.com/serverless/-/serverless-3.34.0.tgz#d60d7c6fc4c6e8634106f22d1e7d52f2a4d4d46c"
-  integrity sha512-xtWAg78NGgboolP/GArdorx+UHyESJgriGSE6Qpgg9trTYsKMyd8YKaMIM3sidy89e45XZopRSpvnPYoQCJOBA==
+serverless@^3.35.2:
+  version "3.35.2"
+  resolved "https://registry.yarnpkg.com/serverless/-/serverless-3.35.2.tgz#8f0e24ba0814ffb9a3a5937fbd3dbea9802f44be"
+  integrity sha512-1RZ4eHl2OaGG2Rzw0l0ZD3byCk2JMCL9/+btzGQGQruuQWu9HwRZGJI7l4A2ghW3Mu6DVwLYLfceNpmEWBZoag==
   dependencies:
-    "@serverless/dashboard-plugin" "^6.2.3"
-    "@serverless/platform-client" "^4.3.2"
-    "@serverless/utils" "^6.11.1"
+    "@serverless/dashboard-plugin" "^7.0.2"
+    "@serverless/platform-client" "^4.4.0"
+    "@serverless/utils" "^6.13.1"
     abort-controller "^3.0.0"
     ajv "^8.12.0"
     ajv-formats "^2.1.1"
@@ -6841,7 +6901,7 @@ speakeasy@^2.0.0:
   dependencies:
     base32.js "0.0.1"
 
-split2@^3.1.1:
+split2@^3.1.1, split2@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/split2/-/split2-3.2.2.tgz#bf2cf2a37d838312c249c89206fd7a17dd12365f"
   integrity sha512-9NThjpgZnifTkJpzTZ7Eue85S49QwpNhZTq6GRJwObb6jnLFNGB7Qm73V5HewTROPyxD0C29xqmaI68bQtV+hg==
