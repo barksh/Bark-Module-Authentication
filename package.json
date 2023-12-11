@@ -19,7 +19,7 @@
         "speakeasy": "^2.0.0"
     },
     "devDependencies": {
-        "@sudoo/triforce": "^3.11.0",
+        "@sudoo/triforce": "^3.12.0",
         "@sudoo/triforce-mongoose-dev": "^1.6.0",
         "@types/aws-lambda": "^8.10.129",
         "@types/speakeasy": "^2.0.10",
